@@ -3,18 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Attune — AI Coach for Neurodivergent Parenting | OneSphere Labs</title>
-    <meta name="description" content="A private AI parenting coach that understands your child. Patent-filed on-device AI technology.">
+    <title>Attune — AI Parenting Coach for Neurodivergent Children | OneSphere Labs</title>
+    <meta name="description" content="A private AI parenting coach that understands your child. Dual-camera live analysis, on-device processing, neuro-affirming guidance. Patent filed.">
     <link rel="icon" type="image/png" href="/logo.png">
     <link rel="stylesheet" href="/css/tokens.css">
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/nav.css">
     <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/product-page.css">
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Attune",
+      "description": "A private AI parenting coach that understands your child. Dual-camera live analysis, on-device processing, neuro-affirming guidance. Patent filed.",
+      "url": "https://attuneapp.com",
+      "applicationCategory": "LifestyleApplication",
+      "operatingSystem": "iOS, Android",
+      "offers": { "@type": "Offer", "availability": "https://schema.org/PreOrder" },
+      "author": { "@type": "Organization", "name": "OneSphere Labs", "url": "https://onespherelabs.com.au" }
+    }
+    </script>
 </head>
-<body>
+<body class="product--family">
     <a href="#main" class="sr-only">Skip to main content</a>
-    <!-- Nav injected by nav partial -->
     <nav class="nav" role="navigation" aria-label="Main navigation">
       <div class="nav__container">
         <a href="/" class="nav__logo" aria-label="OneSphere Labs home"><img src="/logo.png" alt="OneSphere Labs" width="40" height="40"><span class="nav__logo-text">OneSphere Labs</span></a>
@@ -35,10 +48,95 @@
       </div>
       <div class="nav__overlay" data-open="false"></div>
     </nav>
-    <main id="main" style="padding-top: 100px; text-align: center;">
-        <h1>Attune</h1>
-        <p style="margin: 1rem auto;">Product page — coming in Sprint 5</p>
+
+    <main id="main">
+      <!-- Product Hero -->
+      <section class="product-hero">
+        <div class="product-hero__container animate-on-scroll">
+          <span class="product-hero__eyebrow">For Parents of Neurodivergent Children</span>
+          <h1 class="product-hero__title">Attune</h1>
+          <p class="product-hero__tagline">A private AI coach that understands your child.</p>
+          <div class="product-hero__actions">
+            <a href="https://attuneapp.com" class="btn btn-cta" target="_blank" rel="noopener noreferrer">Visit attuneapp.com</a>
+            <a href="https://attuneapp.com" class="btn btn-secondary">Join the waitlist</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Problem / Solution -->
+      <section class="problem-solution">
+        <div class="problem-solution__container">
+          <div class="problem-solution__grid">
+            <div class="problem-solution__col animate-on-scroll">
+              <h3><span class="problem-label">The Problem</span></h3>
+              <p>Parents of neurodivergent children face difficult moments every day, often without support nearby. Generic advice does not account for each child's specific diagnosis. And most parents are left guessing.</p>
+            </div>
+            <div class="problem-solution__col animate-on-scroll" data-delay="100">
+              <h3><span class="solution-label">The Solution</span></h3>
+              <p>Attune gives parents a real-time AI parenting coach that actually knows their child. Point your phone during a difficult moment and get instant, diagnosis-aware guidance. Everything happens on your device. Nothing leaves your phone.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section class="features">
+        <div class="features__container">
+          <div class="features__header animate-on-scroll">
+            <h2>Key Features</h2>
+          </div>
+          <div class="features__grid">
+            <div class="feature-card animate-on-scroll" data-delay="0">
+              <h4 class="feature-card__name">Live Mode</h4>
+              <p class="feature-card__desc">Both cameras work at once. The front camera reads the parent's stress level. The back camera reads the child's behaviour. Within moments, Attune tells you what is happening and what to do, tailored to your child.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" data-delay="50">
+              <h4 class="feature-card__name">Record Mode</h4>
+              <p class="feature-card__desc">Record a 60-second clip of a difficult moment. Attune produces a full breakdown: what happened, when your child was calm versus stressed, what you did well, and what to try next time.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" data-delay="100">
+              <h4 class="feature-card__name">Ask Attune</h4>
+              <p class="feature-card__desc">Type any question and get an answer shaped around your child's specific diagnosis and profile. Not generic advice. Guidance that actually fits your family.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" data-delay="150">
+              <h4 class="feature-card__name">Child Profile System</h4>
+              <p class="feature-card__desc">Every child's profile includes their diagnosis, sensory sensitivities, and known triggers. The AI adjusts its interpretation accordingly. Hand-flapping in an autistic child is understood as self-soothing, not a crisis.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" data-delay="200">
+              <h4 class="feature-card__name">On-Device Processing</h4>
+              <p class="feature-card__desc">All video and audio analysis happens on the device itself. No footage is uploaded to cloud servers. No sensitive data about your child sits on someone else's system. Ever.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" data-delay="250">
+              <h4 class="feature-card__name">Neuro-Affirming Language</h4>
+              <p class="feature-card__desc">Attune treats neurodivergent behaviours as differences to understand, not problems to fix. Every response is written to support and empower parents without judgment.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trust -->
+      <section class="product-trust">
+        <div class="product-trust__container animate-on-scroll">
+          <div class="product-trust__badges">
+            <span class="trust-badge">Patent Filed</span>
+            <span class="trust-badge">On-Device Processing</span>
+            <span class="trust-badge">iOS & Android</span>
+            <span class="trust-badge">Neuro-Affirming</span>
+            <span class="trust-badge">No Cloud Upload</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="product-cta">
+        <div class="product-cta__container animate-on-scroll">
+          <h2>Start understanding your child better today</h2>
+          <p>Download Attune or join the waitlist at attuneapp.com</p>
+          <a href="https://attuneapp.com" class="btn btn-cta" target="_blank" rel="noopener noreferrer">Join the waitlist</a>
+        </div>
+      </section>
     </main>
+
     <footer class="footer" role="contentinfo">
       <div class="footer__container">
         <div class="footer__grid">

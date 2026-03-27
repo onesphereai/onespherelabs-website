@@ -3,18 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vigility — Compliance for RTOs & Aged Care | OneSphere Labs</title>
-    <meta name="description" content="Automated compliance platform for RTOs, NDIS providers, and aged care facilities.">
+    <title>Vigility — Compliance Automation for RTOs & Aged Care | OneSphere Labs</title>
+    <meta name="description" content="Automated compliance platform for RTOs, NDIS providers, and aged care facilities. Regulatory tracking, evidence classification, one-click audit pack generation.">
     <link rel="icon" type="image/png" href="/logo.png">
     <link rel="stylesheet" href="/css/tokens.css">
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/nav.css">
     <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/product-page.css">
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Vigility",
+      "description": "Automated compliance platform for RTOs, NDIS providers, and aged care facilities. Regulatory tracking, evidence classification, one-click audit pack generation.",
+      "url": "https://vigility.com.au",
+      "applicationCategory": "BusinessApplication",
+      "offers": { "@type": "Offer", "availability": "https://schema.org/InStock" },
+      "author": { "@type": "Organization", "name": "OneSphere Labs", "url": "https://onespherelabs.com.au" }
+    }
+    </script>
 </head>
-<body>
+<body class="product--compliance">
     <a href="#main" class="sr-only">Skip to main content</a>
-    <!-- Nav injected by nav partial -->
     <nav class="nav" role="navigation" aria-label="Main navigation">
       <div class="nav__container">
         <a href="/" class="nav__logo" aria-label="OneSphere Labs home"><img src="/logo.png" alt="OneSphere Labs" width="40" height="40"><span class="nav__logo-text">OneSphere Labs</span></a>
@@ -35,10 +47,98 @@
       </div>
       <div class="nav__overlay" data-open="false"></div>
     </nav>
-    <main id="main" style="padding-top: 100px; text-align: center;">
-        <h1>Vigility</h1>
-        <p style="margin: 1rem auto;">Product page — coming in Sprint 5</p>
+
+    <main id="main">
+      <!-- Product Hero -->
+      <section class="product-hero">
+        <div class="product-hero__container animate-on-scroll">
+          <span class="product-hero__eyebrow">For RTOs, NDIS Providers & Aged Care</span>
+          <h1 class="product-hero__title">Vigility</h1>
+          <p class="product-hero__tagline">Compliance that runs itself. Audit-ready, always.</p>
+          <div class="product-hero__actions">
+            <a href="https://vigility.com.au" class="btn btn-cta" target="_blank" rel="noopener noreferrer">Visit vigility.com.au</a>
+            <a href="https://vigility.com.au" class="btn btn-secondary">Request a demo</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Problem / Solution -->
+      <section class="problem-solution">
+        <div class="problem-solution__container">
+          <div class="problem-solution__grid">
+            <div class="problem-solution__col animate-on-scroll">
+              <h3><span class="problem-label">The Problem</span></h3>
+              <p>Compliance teams at RTOs, NDIS providers, and aged care facilities spend enormous time manually tracking regulations, chasing evidence, managing credentials, and dreading audits. A single missed requirement can mean penalties, failed audits, or loss of registration.</p>
+            </div>
+            <div class="problem-solution__col animate-on-scroll" data-delay="100">
+              <h3><span class="solution-label">The Solution</span></h3>
+              <p>Vigility turns compliance from a reactive, stressful process into an always-on, automated one. It knows what you need to comply with, tracks how you are meeting those requirements, and generates a complete audit pack at the click of a button.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section class="features">
+        <div class="features__container">
+          <div class="features__header animate-on-scroll">
+            <h2>Key Features</h2>
+          </div>
+          <div class="features__grid">
+            <div class="feature-card animate-on-scroll" data-delay="0">
+              <h4 class="feature-card__name">Regulatory Standards Library</h4>
+              <p class="feature-card__desc">An up-to-date library of obligations relevant to your industry, whether you are an RTO, NDIS provider, or aged care facility. Always know exactly what is required of you.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" data-delay="50">
+              <h4 class="feature-card__name">Controls Mapping</h4>
+              <p class="feature-card__desc">Define your organisational controls (policies, procedures, processes) and map them directly to the regulations they satisfy. See your coverage and gaps at a glance.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" data-delay="100">
+              <h4 class="feature-card__name">Automated Evidence Classification</h4>
+              <p class="feature-card__desc">Upload compliance documents and AI automatically categorises them, tracks expiry dates, and links them to the right controls. No more manual filing.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" data-delay="150">
+              <h4 class="feature-card__name">Staff Credential Tracking</h4>
+              <p class="feature-card__desc">Tracks trainer qualifications, vocational competencies, and unit-level teaching authorisations. Know who is authorised to deliver what, and when credentials are expiring, before it becomes a problem.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" data-delay="200">
+              <h4 class="feature-card__name">One-Click Audit Pack Generation</h4>
+              <p class="feature-card__desc">AI analyses your evidence against selected standards and produces a structured audit report with findings. What used to take days of preparation now takes minutes.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" data-delay="250">
+              <h4 class="feature-card__name">CAPA Tracking</h4>
+              <p class="feature-card__desc">When gaps or non-conformances are found, the platform creates findings and tracks corrective actions with owners, timelines, and status. Nothing falls through the cracks.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" data-delay="300">
+              <h4 class="feature-card__name">Live Compliance Score</h4>
+              <p class="feature-card__desc">A real-time risk score tells you where you stand at any moment, with historical snapshots so you can see your compliance posture improving over time.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trust -->
+      <section class="product-trust">
+        <div class="product-trust__container animate-on-scroll">
+          <div class="product-trust__badges">
+            <span class="trust-badge">Built for ASQA Standards</span>
+            <span class="trust-badge">NDIS Provider Ready</span>
+            <span class="trust-badge">Aged Care Compliant</span>
+            <span class="trust-badge">Multi-Site Support</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="product-cta">
+        <div class="product-cta__container animate-on-scroll">
+          <h2>Get audit-ready today</h2>
+          <p>Request a demo at vigility.com.au</p>
+          <a href="https://vigility.com.au" class="btn btn-cta" target="_blank" rel="noopener noreferrer">Request a demo</a>
+        </div>
+      </section>
     </main>
+
     <footer class="footer" role="contentinfo">
       <div class="footer__container">
         <div class="footer__grid">

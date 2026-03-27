@@ -4,17 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Petsense — AI Pet Behaviour Analysis | OneSphere Labs</title>
-    <meta name="description" content="Understand what your pet is telling you with real-time AI behaviour analysis for dogs and cats.">
+    <meta name="description" content="Understand what your pet is telling you with real-time AI behaviour analysis for dogs and cats. Breed-aware, actionable guidance.">
     <link rel="icon" type="image/png" href="/logo.png">
     <link rel="stylesheet" href="/css/tokens.css">
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/nav.css">
     <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/product-page.css">
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Petsense",
+      "description": "Understand what your pet is telling you with real-time AI behaviour analysis for dogs and cats. Breed-aware, actionable guidance.",
+      "url": "https://petsenseapp.com",
+      "applicationCategory": "LifestyleApplication",
+      "operatingSystem": "iOS, Android",
+      "offers": { "@type": "Offer", "availability": "https://schema.org/PreOrder" },
+      "author": { "@type": "Organization", "name": "OneSphere Labs", "url": "https://onespherelabs.com.au" }
+    }
+    </script>
 </head>
-<body>
+<body class="product--pet">
     <a href="#main" class="sr-only">Skip to main content</a>
-    <!-- Nav injected by nav partial -->
     <nav class="nav" role="navigation" aria-label="Main navigation">
       <div class="nav__container">
         <a href="/" class="nav__logo" aria-label="OneSphere Labs home"><img src="/logo.png" alt="OneSphere Labs" width="40" height="40"><span class="nav__logo-text">OneSphere Labs</span></a>
@@ -35,10 +48,90 @@
       </div>
       <div class="nav__overlay" data-open="false"></div>
     </nav>
-    <main id="main" style="padding-top: 100px; text-align: center;">
-        <h1>Petsense</h1>
-        <p style="margin: 1rem auto;">Product page — coming in Sprint 5</p>
+
+    <main id="main">
+      <!-- Product Hero -->
+      <section class="product-hero">
+        <div class="product-hero__container animate-on-scroll">
+          <span class="product-hero__eyebrow">For Pet Owners</span>
+          <h1 class="product-hero__title">Petsense</h1>
+          <p class="product-hero__tagline">Finally understand what your pet is telling you.</p>
+          <div class="product-hero__actions">
+            <a href="https://petsenseapp.com" class="btn btn-cta" target="_blank" rel="noopener noreferrer">Visit petsenseapp.com</a>
+            <a href="https://petsenseapp.com" class="btn btn-secondary">Join the waitlist</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Problem / Solution -->
+      <section class="problem-solution">
+        <div class="problem-solution__container">
+          <div class="problem-solution__grid">
+            <div class="problem-solution__col animate-on-scroll">
+              <h3><span class="problem-label">The Problem</span></h3>
+              <p>Pets communicate through behaviour, posture, and sound. Most owners miss the signals, not because they do not care, but because nobody ever taught them how to read their dog or cat. Anxiety, discomfort, and stress often go unnoticed until they become bigger problems.</p>
+            </div>
+            <div class="problem-solution__col animate-on-scroll" data-delay="100">
+              <h3><span class="solution-label">The Solution</span></h3>
+              <p>Petsense uses your phone camera and AI to analyse your pet's behaviour in real time. Point, observe, and understand. Whether your dog is anxious or your cat is overstimulated, Petsense tells you what is happening and what to do.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section class="features">
+        <div class="features__container">
+          <div class="features__header animate-on-scroll">
+            <h2>Key Features</h2>
+          </div>
+          <div class="features__grid">
+            <div class="feature-card animate-on-scroll" data-delay="0">
+              <h4 class="feature-card__name">Real-Time Behaviour Analysis</h4>
+              <p class="feature-card__desc">Point your camera at your dog or cat and get an instant read on their emotional state and behaviour. Petsense identifies signals that most owners would not notice.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" data-delay="50">
+              <h4 class="feature-card__name">Dog and Cat Support</h4>
+              <p class="feature-card__desc">Built to understand the distinct body language of both dogs and cats. Whether it is tail position, ear movement, posture, or vocalisation, Petsense reads the full picture.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" data-delay="100">
+              <h4 class="feature-card__name">Behaviour History</h4>
+              <p class="feature-card__desc">Track your pet's behaviour patterns over time. Spot trends, identify recurring triggers, and understand what environments or situations affect your pet most.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" data-delay="150">
+              <h4 class="feature-card__name">Actionable Guidance</h4>
+              <p class="feature-card__desc">Every analysis comes with clear, practical guidance on how to respond. Not just what your pet is feeling, but what you can do about it right now.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" data-delay="200">
+              <h4 class="feature-card__name">Breed Awareness</h4>
+              <p class="feature-card__desc">Petsense accounts for breed-specific behaviours and tendencies, so the guidance you receive is relevant to your specific animal, not just dogs or cats in general.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trust -->
+      <section class="product-trust">
+        <div class="product-trust__container animate-on-scroll">
+          <div class="product-trust__badges">
+            <span class="trust-badge">Dogs & Cats</span>
+            <span class="trust-badge">Real-Time AI</span>
+            <span class="trust-badge">Breed Aware</span>
+            <span class="trust-badge">Actionable Guidance</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="product-cta">
+        <div class="product-cta__container animate-on-scroll">
+          <h2>Get closer to your pet today</h2>
+          <p>Download Petsense or join the waitlist at petsenseapp.com</p>
+          <a href="https://petsenseapp.com" class="btn btn-cta" target="_blank" rel="noopener noreferrer">Join the waitlist</a>
+        </div>
+      </section>
     </main>
+
     <footer class="footer" role="contentinfo">
       <div class="footer__container">
         <div class="footer__grid">

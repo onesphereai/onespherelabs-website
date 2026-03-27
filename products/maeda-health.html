@@ -4,17 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Maeda Health — AI for Australian Doctors | OneSphere Labs</title>
-    <meta name="description" content="AI-powered clinical assistant for Australian doctors. Medical Scribe in 5 languages, MBS Billing, Post-Consultation Forms, and APP-compliant data processing.">
+    <meta name="description" content="AI-powered clinical assistant for Australian doctors. Medical Scribe in 5 languages, MBS Billing, 14+ post-consultation forms. APP compliant, Sydney data residency.">
     <link rel="icon" type="image/png" href="/logo.png">
     <link rel="stylesheet" href="/css/tokens.css">
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/nav.css">
     <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/product-page.css">
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Maeda Health",
+      "description": "AI-powered clinical assistant for Australian doctors. Medical Scribe in 5 languages, MBS Billing, 14+ post-consultation forms. APP compliant, Sydney data residency.",
+      "url": "https://maedahealth.com",
+      "applicationCategory": "HealthApplication",
+      "offers": { "@type": "Offer", "availability": "https://schema.org/InStock" },
+      "author": { "@type": "Organization", "name": "OneSphere Labs", "url": "https://onespherelabs.com.au" }
+    }
+    </script>
 </head>
-<body>
+<body class="product--health">
     <a href="#main" class="sr-only">Skip to main content</a>
-    <!-- Nav injected by nav partial -->
     <nav class="nav" role="navigation" aria-label="Main navigation">
       <div class="nav__container">
         <a href="/" class="nav__logo" aria-label="OneSphere Labs home"><img src="/logo.png" alt="OneSphere Labs" width="40" height="40"><span class="nav__logo-text">OneSphere Labs</span></a>
@@ -35,10 +47,103 @@
       </div>
       <div class="nav__overlay" data-open="false"></div>
     </nav>
-    <main id="main" style="padding-top: 100px; text-align: center;">
-        <h1>Maeda Health</h1>
-        <p style="margin: 1rem auto;">Product page — coming in Sprint 5 (WEB-21)</p>
+
+    <main id="main">
+      <!-- Product Hero -->
+      <section class="product-hero">
+        <div class="product-hero__container animate-on-scroll">
+          <span class="product-hero__eyebrow">For Australian Doctors</span>
+          <h1 class="product-hero__title">Maeda Health</h1>
+          <p class="product-hero__tagline">Your AI Colleague for Every Clinical Task</p>
+          <div class="product-hero__actions">
+            <a href="https://maedahealth.com" class="btn btn-cta" target="_blank" rel="noopener noreferrer">Visit maedahealth.com</a>
+            <a href="https://maedahealth.com" class="btn btn-secondary">Book a free demo</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Problem / Solution -->
+      <section class="problem-solution">
+        <div class="problem-solution__container">
+          <div class="problem-solution__grid">
+            <div class="problem-solution__col animate-on-scroll">
+              <h3><span class="problem-label">The Problem</span></h3>
+              <p>Australian doctors spend hours every day on documentation, forms, billing, and correspondence. That time comes directly at the expense of patients. Most AI tools only solve one piece of the puzzle.</p>
+            </div>
+            <div class="problem-solution__col animate-on-scroll" data-delay="100">
+              <h3><span class="solution-label">The Solution</span></h3>
+              <p>Maeda covers the entire consultation workflow from first patient contact to final signed document. One platform replaces the scribe, the form filler, the billing tool, and the clinical reference. Built specifically for Australia.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features -->
+      <section class="features">
+        <div class="features__container">
+          <div class="features__header animate-on-scroll">
+            <h2>Key Features</h2>
+          </div>
+          <div class="features__grid">
+            <div class="feature-card animate-on-scroll" data-delay="0">
+              <h4 class="feature-card__name">AI Clinical Assistant</h4>
+              <p class="feature-card__desc">An always-on conversational AI inside the doctor portal. Ask clinical questions, explore differential diagnoses, check drug interactions, and get evidence-based answers grounded in Australian guidelines (RACGP, TGA, PBS) with source citations, all within the context of the patient in front of you.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" data-delay="50">
+              <h4 class="feature-card__name">AI Medical Scribe</h4>
+              <p class="feature-card__desc">Real-time transcription and instant SOAP note generation during consultations. Supports five languages including Mandarin, Hindi, Arabic, Vietnamese, and Greek. Smart Dictation mode for notes recorded outside of consultations.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" data-delay="100">
+              <h4 class="feature-card__name">MBS Billing Suggestions</h4>
+              <p class="feature-card__desc">AI recommends the correct Medicare billing codes based on consultation content and duration. Schedule fees displayed instantly. Prevents missed items and reduces billing errors.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" data-delay="150">
+              <h4 class="feature-card__name">Post-Consultation Forms</h4>
+              <p class="feature-card__desc">Automatically completes 14+ Australian government and clinical forms after every consultation: WorkCover certificates, Centrelink documents, Mental Health Treatment Plans, referral letters, and more.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" data-delay="200">
+              <h4 class="feature-card__name">Specialist Referral Search</h4>
+              <p class="feature-card__desc">Finds local specialists and auto-generates referral letters on the spot, drawing directly from consultation notes.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" data-delay="250">
+              <h4 class="feature-card__name">Smart Patient Forms</h4>
+              <p class="feature-card__desc">Drag-and-drop form builder with conditional logic for patient screening. AI Form Assistant generates complete forms from plain English descriptions. Outcomes feed directly into the doctor's workspace.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" data-delay="300">
+              <h4 class="feature-card__name">Correspondence Management</h4>
+              <p class="feature-card__desc">Reads and classifies inbound scanned mail from hospitals, assigns urgency levels, and routes documents to the correct doctor's inbox automatically.</p>
+            </div>
+            <div class="feature-card animate-on-scroll" data-delay="350">
+              <h4 class="feature-card__name">Clinical Knowledge Base</h4>
+              <p class="feature-card__desc">Build a personal or shared knowledge base from trusted guidelines and research papers. Ask questions and receive cited answers tailored to your specialty.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Trust -->
+      <section class="product-trust">
+        <div class="product-trust__container animate-on-scroll">
+          <div class="product-trust__badges">
+            <span class="trust-badge">APP Compliant</span>
+            <span class="trust-badge">Sydney Data Residency</span>
+            <span class="trust-badge">Data Never Used for AI Training</span>
+            <span class="trust-badge">Built for Australia</span>
+            <span class="trust-badge">5 Language Support</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="product-cta">
+        <div class="product-cta__container animate-on-scroll">
+          <h2>See Maeda in action</h2>
+          <p>Book a free demo at maedahealth.com</p>
+          <a href="https://maedahealth.com" class="btn btn-cta" target="_blank" rel="noopener noreferrer">Book a free demo</a>
+        </div>
+      </section>
     </main>
+
     <footer class="footer" role="contentinfo">
       <div class="footer__container">
         <div class="footer__grid">
