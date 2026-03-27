@@ -94,15 +94,34 @@
         ]
     }
     </script>
+    <style>
+      .animated-text {
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: #1a1a1a;
+          animation: fadeInSlide 2s ease-in-out forwards;
+      }
+      @keyframes fadeInSlide {
+          from {
+              opacity: 0.4;
+              transform: translateX(-5px);
+          }
+          to {
+              opacity: 1;
+              transform: translateX(5px);
+          }
+      }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <img src="logo.png" alt="OneSphere Labs" class="logo-img">
+    <nav class="navbar" style="width: 100%; background: #ffffff; border-bottom: 1px solid rgba(0,0,0,0.06);">
+        <div class="nav-container" style="display: flex; justify-content: space-between; align-items: center; width: 100%; max-width: 1200px; margin: 0 auto; padding: 12px 24px;">
+            <div class="nav-logo" style="display: flex; align-items: center; gap: 10px;">
+                <img src="logo.png" alt="OneSphere Labs" class="logo-img" style="height: 64px; width: auto;">
+                <span class="logo-text animated-text">OneSphere Labs</span>
             </div>
-            <ul class="nav-menu">
+            <ul class="nav-menu" style="display: flex; gap: 1.5rem; margin-left: auto; align-items: center; list-style: none; padding: 0;">
                 <li class="nav-item">
                     <a href="#home" class="nav-link">Home</a>
                 </li>
@@ -111,6 +130,12 @@
                 </li>
                 <li class="nav-item">
                     <a href="#about" class="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#services" class="nav-link">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#products" class="nav-link">Products & Demo</a>
                 </li>
                 <li class="nav-item">
                     <a href="#contact" class="nav-link">Contact</a>
@@ -256,6 +281,396 @@
         </div>
     </section>
 
+    <!-- Products & Demo Section -->
+    <section id="products" class="products">
+        <div class="container">
+            <div class="section-header">
+                <h2>Products & Demo</h2>
+                <p>Explore our innovative solutions and see them in action</p>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-icon">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <h3>Smart Med Notes</h3>
+                    <p>Advanced AI-powered clinical scribe utilizing natural language processing and clinical decision support algorithms to transform physician prompts into comprehensive, evidence-based patient documentation through intelligent diagnostic questioning.</p>
+                    <div class="product-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> AI-driven clinical analysis & NLP processing</li>
+                            <li><i class="fas fa-check"></i> Evidence-based diagnostic questioning algorithms</li>
+                            <li><i class="fas fa-check"></i> Clinical decision support integration</li>
+                            <li><i class="fas fa-check"></i> HIPAA-compliant AI medical documentation</li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-primary demo-btn" onclick="openDemo('smartMedNotes')">
+                        <i class="fas fa-play"></i> Try Interactive Demo
+                    </button>
+                </div>
+                
+                <!-- Placeholder for future products -->
+                <div class="product-card coming-soon">
+                    <div class="product-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AutoFlow AI</h3>
+                    <p>Intelligent workflow automation platform for streamlining business processes and improving operational efficiency.</p>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                    <button class="btn btn-secondary" disabled>
+                        <i class="fas fa-clock"></i> In Development
+                    </button>
+                </div>
+                
+                <div class="product-card coming-soon">
+                    <div class="product-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>TechSphere Dashboard</h3>
+                    <p>Comprehensive IT infrastructure monitoring and management solution with real-time analytics and alerts.</p>
+                    <div class="coming-soon-badge">Coming Soon</div>
+                    <button class="btn btn-secondary" disabled>
+                        <i class="fas fa-clock"></i> In Development
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Smart Med Notes Demo Modal -->
+    <div id="smartMedNotesDemo" class="demo-modal">
+        <div class="demo-content">
+            <div class="demo-header">
+                <h3><i class="fas fa-stethoscope"></i> Smart Med Notes - Interactive Demo</h3>
+                <button class="close-demo" onclick="closeDemo()">&times;</button>
+            </div>
+            <div class="demo-body">
+                <div class="demo-interface">
+                    <div class="demo-step" id="step0">
+                        <h4>Step 1: Select Consultation Type</h4>
+                        <div class="consultation-selector">
+                            <p>🩺 Smart Med Notes AI: Please select the type of consultation to optimize template generation:</p>
+                            <div class="consultation-types">
+                                <div class="consultation-card" onclick="selectConsultationType('general')">
+                                    <div class="consultation-icon">
+                                        <i class="fas fa-user-md"></i>
+                                    </div>
+                                    <h5>General Consultation</h5>
+                                    <p>Standard GP consultation with comprehensive assessment</p>
+                                </div>
+                                <div class="consultation-card" onclick="selectConsultationType('mental-health')">
+                                    <div class="consultation-icon">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                    <h5>Mental Health Consultation</h5>
+                                    <p>Specialized mental health assessment with RACGP mental health templates</p>
+                                </div>
+                                <div class="consultation-card" onclick="selectConsultationType('procedure')">
+                                    <div class="consultation-icon">
+                                        <i class="fas fa-procedures"></i>
+                                    </div>
+                                    <h5>Procedure</h5>
+                                    <p>Medical procedure documentation with AHPRA compliance</p>
+                                </div>
+                                <div class="consultation-card" onclick="selectConsultationType('chronic-disease')">
+                                    <div class="consultation-icon">
+                                        <i class="fas fa-heartbeat"></i>
+                                    </div>
+                                    <h5>Chronic Disease Management</h5>
+                                    <p>CDM plan with Medicare item numbers and care coordination</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-step hidden" id="step1">
+                        <h4>Step 2: Input Clinical Scenario for AI Analysis</h4>
+                        <div class="consultation-context" id="consultationContext">
+                            <!-- Will be populated based on consultation type -->
+                        </div>
+                        <div class="prompt-input">
+                            <textarea id="initialPrompt" placeholder="🤖 Enter patient presentation for AI-powered clinical analysis...&#10;&#10;Examples:&#10;• '65-year-old male presents with acute chest pain and diaphoresis'&#10;• 'Patient reports sudden onset dyspnea with pleuritic chest pain'&#10;• 'Severe thunderclap headache with photophobia and neck stiffness'&#10;&#10;💡 Smart Med Notes AI will analyze your input and generate targeted follow-up questions using clinical decision support algorithms"></textarea>
+                            <button class="btn btn-primary" onclick="processPrompt()">🧠 Activate AI Clinical Analysis</button>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-step hidden" id="step2">
+                        <h4>Step 3: Multi-Stage AI Clinical Reasoning</h4>
+                        
+                        <!-- Reasoning Progress -->
+                        <div class="reasoning-progress">
+                            <div class="stage-indicator">
+                                <span class="stage-title" id="stageTitle">Stage 1: Initial Clinical Assessment</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progressFill"></div>
+                                </div>
+                                <span class="stage-description" id="stageDescription">AI is gathering basic symptom characteristics to establish baseline probability</span>
+                            </div>
+                        </div>
+                        
+                        <!-- AI Confidence Dashboard -->
+                        <div class="ai-dashboard">
+                            <div class="confidence-panel">
+                                <h5>🤖 AI Confidence Score</h5>
+                                <div class="confidence-meter">
+                                    <div class="confidence-bar">
+                                        <div class="confidence-fill" id="confidenceFill"></div>
+                                    </div>
+                                    <span class="confidence-text" id="confidenceText">50% (Building Confidence)</span>
+                                </div>
+                            </div>
+                            
+                            <div class="risk-panel">
+                                <h5>⚠️ Risk Stratification</h5>
+                                <div class="risk-score" id="riskScore">
+                                    <div class="score-display">
+                                        <span class="score-name">HEART Score (RACGP)</span>
+                                        <span class="score-value">3/10</span>
+                                        <span class="risk-level moderate">Moderate Risk</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="differential-panel">
+                                <h5>🎯 Differential Diagnosis</h5>
+                                <div class="diagnosis-list" id="diagnosisList">
+                                    <!-- Will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="followup-questions">
+                            <p class="ai-response" id="aiResponse">🤖 Smart Med Notes AI is performing multi-stage clinical reasoning using AHPRA-approved standards:</p>
+                            <div class="questions-grid" id="questionsGrid">
+                                <!-- Questions will be populated by JavaScript -->
+                            </div>
+                            <div class="stage-controls">
+                                <button class="btn btn-secondary" id="nextStageBtn" onclick="nextStage()" style="display: none;">🧠 Continue to Next Reasoning Stage</button>
+                                <button class="btn btn-primary" id="generateDocBtn" onclick="generateDocument()" style="display: none;">📋 Generate Final Medical Document</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-step hidden" id="step3">
+                        <h4>Step 4: Generated Medical Documentation</h4>
+                        <div class="medical-document">
+                            <div class="document-header">
+                                <h5>PATIENT HISTORY DOCUMENTATION</h5>
+                                <p class="generated-date">Generated: <span id="currentDate"></span></p>
+                            </div>
+                            <div class="document-content" id="documentContent">
+                                <!-- Document will be populated by JavaScript -->
+                            </div>
+                            <div class="document-actions">
+                                <button class="btn btn-primary"><i class="fas fa-download"></i> Export PDF</button>
+                                <button class="btn btn-secondary"><i class="fas fa-edit"></i> Edit Document</button>
+                                <button class="btn btn-secondary"><i class="fas fa-share"></i> Send to EMR</button>
+                                <button class="btn btn-outline" onclick="resetDemo()"><i class="fas fa-redo"></i> Try Another Case</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Early Access / Waiting List Section -->
+    <section id="early-access" class="early-access">
+        <div class="container">
+            <div class="early-access-content">
+                <div class="early-access-header">
+                    <h2>🚀 Join the Early Access Program</h2>
+                    <p class="early-access-subtitle">Be among the first to experience Smart Med Notes AI and help shape the future of medical documentation</p>
+                </div>
+                
+                <div class="early-access-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" id="waitingListCount">247</div>
+                        <div class="stat-label">Healthcare Professionals Waiting</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Medical Practices Interested</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Months Until Launch</div>
+                    </div>
+                </div>
+
+                <div class="early-access-form-container">
+                    <div class="early-access-benefits">
+                        <h3>🎯 Early Access Benefits</h3>
+                        <ul class="benefits-list">
+                            <li><i class="fas fa-check-circle"></i> <strong>50% Discount</strong> on first year subscription</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Priority Access</strong> to new features and updates</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Direct Input</strong> on product development roadmap</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Free Training</strong> and onboarding support</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>RACGP/AHPRA Compliance</strong> consultation included</li>
+                            <li><i class="fas fa-check-circle"></i> <strong>Beta Testing</strong> access to cutting-edge AI features</li>
+                        </ul>
+                        
+                        <div class="urgency-indicator">
+                            <div class="urgency-badge">
+                                <i class="fas fa-fire"></i>
+                                <span>Limited to first 500 healthcare professionals</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 49.4%;"></div>
+                            </div>
+                            <div class="progress-text">247 / 500 spots filled</div>
+                        </div>
+                    </div>
+
+                    <form class="early-access-form" id="earlyAccessForm" action="https://formsubmit.co/3e2b08b13fd6229c192c7c6f8c811867" method="POST">
+                        <!-- FormSubmit Configuration -->
+                        <input type="hidden" name="_subject" value="🚀 New Early Access Registration - Smart Med Notes AI">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_next" value="https://dub8fg1x2iiml.amplifyapp.com/early-access-success.html">
+                        
+                        <div class="form-header">
+                            <h3>🔐 Secure Your Early Access</h3>
+                            <p>Join leading healthcare professionals who are revolutionizing medical documentation</p>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="ea-name">Full Name *</label>
+                                <input type="text" id="ea-name" name="name" placeholder="Dr. Sarah Johnson" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ea-email">Professional Email *</label>
+                                <input type="email" id="ea-email" name="email" placeholder="sarah.johnson@medicalpractice.com.au" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="ea-role">Professional Role *</label>
+                                <select id="ea-role" name="role" required>
+                                    <option value="">Select Your Role</option>
+                                    <option value="General Practitioner">General Practitioner</option>
+                                    <option value="Specialist Doctor">Specialist Doctor</option>
+                                    <option value="Practice Manager">Practice Manager</option>
+                                    <option value="Practice Nurse">Practice Nurse</option>
+                                    <option value="Allied Health Professional">Allied Health Professional</option>
+                                    <option value="Medical Administrator">Medical Administrator</option>
+                                    <option value="Healthcare IT Manager">Healthcare IT Manager</option>
+                                    <option value="Other Healthcare Professional">Other Healthcare Professional</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="ea-organization">Organization/Practice</label>
+                                <input type="text" id="ea-organization" name="organization" placeholder="Melbourne Medical Centre">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="ea-state">State/Territory *</label>
+                                <select id="ea-state" name="state" required>
+                                    <option value="">Select State/Territory</option>
+                                    <option value="NSW">New South Wales</option>
+                                    <option value="VIC">Victoria</option>
+                                    <option value="QLD">Queensland</option>
+                                    <option value="WA">Western Australia</option>
+                                    <option value="SA">South Australia</option>
+                                    <option value="TAS">Tasmania</option>
+                                    <option value="ACT">Australian Capital Territory</option>
+                                    <option value="NT">Northern Territory</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="ea-practice-size">Practice Size</label>
+                                <select id="ea-practice-size" name="practice_size">
+                                    <option value="">Select Practice Size</option>
+                                    <option value="Solo Practice">Solo Practice (1 GP)</option>
+                                    <option value="Small Practice">Small Practice (2-5 GPs)</option>
+                                    <option value="Medium Practice">Medium Practice (6-15 GPs)</option>
+                                    <option value="Large Practice">Large Practice (16+ GPs)</option>
+                                    <option value="Hospital/Health System">Hospital/Health System</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ea-interest">Primary Interest in Smart Med Notes AI *</label>
+                            <select id="ea-interest" name="primary_interest" required>
+                                <option value="">Select Primary Interest</option>
+                                <option value="Clinical Documentation Efficiency">Clinical Documentation Efficiency</option>
+                                <option value="RACGP/AHPRA Compliance">RACGP/AHPRA Compliance</option>
+                                <option value="Mental Health Care Plans">Mental Health Care Plans</option>
+                                <option value="Chronic Disease Management">Chronic Disease Management</option>
+                                <option value="Procedure Documentation">Procedure Documentation</option>
+                                <option value="AI-Powered Clinical Decision Support">AI-Powered Clinical Decision Support</option>
+                                <option value="Practice Workflow Optimization">Practice Workflow Optimization</option>
+                                <option value="Medicare Billing Integration">Medicare Billing Integration</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ea-timeline">Implementation Timeline</label>
+                            <select id="ea-timeline" name="implementation_timeline">
+                                <option value="">When would you like to implement?</option>
+                                <option value="Immediately">Immediately (Ready to start)</option>
+                                <option value="Within 3 months">Within 3 months</option>
+                                <option value="Within 6 months">Within 6 months</option>
+                                <option value="Within 12 months">Within 12 months</option>
+                                <option value="Just exploring">Just exploring options</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ea-comments">Additional Comments or Specific Requirements</label>
+                            <textarea id="ea-comments" name="comments" placeholder="Tell us about your specific needs, current challenges with medical documentation, or any questions about Smart Med Notes AI..." rows="3"></textarea>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="updates_consent" value="yes" required>
+                                <span class="checkmark"></span>
+                                I agree to receive updates about Smart Med Notes AI development and early access program *
+                            </label>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="demo_interest" value="yes">
+                                <span class="checkmark"></span>
+                                I'm interested in a personalized demo for my practice
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-large">
+                            <i class="fas fa-rocket"></i>
+                            Secure My Early Access Spot
+                        </button>
+
+                        <div class="form-footer">
+                            <p><i class="fas fa-shield-alt"></i> Your information is secure and will only be used for the Smart Med Notes AI early access program</p>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="social-proof">
+                    <h4>Join Leading Healthcare Professionals</h4>
+                    <div class="testimonials-preview">
+                        <div class="testimonial-item">
+                            <p>🩺 <strong>Built for Australian Healthcare:</strong> Designed specifically for RACGP and AHPRA compliance standards</p>
+                        </div>
+                        <div class="testimonial-item">
+                            <p>🤖 <strong>AI-Powered Clinical Intelligence:</strong> Advanced natural language processing with medical terminology recognition</p>
+                        </div>
+                        <div class="testimonial-item">
+                            <p>📋 <strong>Evidence-Based Templates:</strong> Medicare-compliant documentation with clinical decision support</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="contact">
         <div class="container">
@@ -282,7 +697,13 @@
                         </div>
                     </div>
                 </div>
-                <form class="contact-form" id="contactForm">
+                <form class="contact-form" id="contactForm" action="https://formsubmit.co/3e2b08b13fd6229c192c7c6f8c811867" method="POST">
+                    <!-- FormSubmit Configuration -->
+                    <input type="hidden" name="_subject" value="New Contact Form Submission - OneSphere Labs">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <!-- Remove the _next redirect to prevent 404 -->
+                    
                     <div class="form-group">
                         <input type="text" id="name" name="name" placeholder="Your Name" required>
                     </div>
