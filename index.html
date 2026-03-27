@@ -132,9 +132,6 @@
                     <a href="#about" class="nav-link">About</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#services" class="nav-link">Services</a>
-                </li>
-                <li class="nav-item">
                     <a href="#products" class="nav-link">Products & Demo</a>
                 </li>
                 <li class="nav-item">
@@ -293,54 +290,29 @@
                     <div class="product-icon">
                         <i class="fas fa-stethoscope"></i>
                     </div>
-                    <h3>Smart Med Notes</h3>
-                    <p>Advanced AI-powered clinical scribe utilizing natural language processing and clinical decision support algorithms to transform physician prompts into comprehensive, evidence-based patient documentation through intelligent diagnostic questioning.</p>
+                    <h3>Maeda Health</h3>
+                    <p>AI-powered clinical assistant for Australian doctors. Features Medical Scribe in 5 languages, MBS Billing automation, Post-Consultation Forms, Specialist Referral Search, and APP-compliant data processing with Sydney data residency.</p>
                     <div class="product-features">
                         <ul>
                             <li><i class="fas fa-check"></i> AI-driven clinical analysis & NLP processing</li>
                             <li><i class="fas fa-check"></i> Evidence-based diagnostic questioning algorithms</li>
                             <li><i class="fas fa-check"></i> Clinical decision support integration</li>
-                            <li><i class="fas fa-check"></i> HIPAA-compliant AI medical documentation</li>
+                            <li><i class="fas fa-check"></i> APP-compliant AI medical documentation</li>
                         </ul>
                     </div>
-                    <button class="btn btn-primary demo-btn" onclick="openDemo('smartMedNotes')">
-                        <i class="fas fa-play"></i> Try Interactive Demo
-                    </button>
-                </div>
-                
-                <!-- Placeholder for future products -->
-                <div class="product-card coming-soon">
-                    <div class="product-icon">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>AutoFlow AI</h3>
-                    <p>Intelligent workflow automation platform for streamlining business processes and improving operational efficiency.</p>
-                    <div class="coming-soon-badge">Coming Soon</div>
-                    <button class="btn btn-secondary" disabled>
-                        <i class="fas fa-clock"></i> In Development
-                    </button>
-                </div>
-                
-                <div class="product-card coming-soon">
-                    <div class="product-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>TechSphere Dashboard</h3>
-                    <p>Comprehensive IT infrastructure monitoring and management solution with real-time analytics and alerts.</p>
-                    <div class="coming-soon-badge">Coming Soon</div>
-                    <button class="btn btn-secondary" disabled>
-                        <i class="fas fa-clock"></i> In Development
-                    </button>
+                    <a href="https://maedahealth.com" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+                        Visit Maeda Health
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Smart Med Notes Demo Modal -->
-    <div id="smartMedNotesDemo" class="demo-modal">
+    <!-- Maeda Health Demo Modal -->
+    <div id="maedaHealthDemo" class="demo-modal">
         <div class="demo-content">
             <div class="demo-header">
-                <h3><i class="fas fa-stethoscope"></i> Smart Med Notes - Interactive Demo</h3>
+                <h3><i class="fas fa-stethoscope"></i> Maeda Health - Interactive Demo</h3>
                 <button class="close-demo" onclick="closeDemo()">&times;</button>
             </div>
             <div class="demo-body">
@@ -348,7 +320,7 @@
                     <div class="demo-step" id="step0">
                         <h4>Step 1: Select Consultation Type</h4>
                         <div class="consultation-selector">
-                            <p>🩺 Smart Med Notes AI: Please select the type of consultation to optimize template generation:</p>
+                            <p>🩺 Maeda Health AI: Please select the type of consultation to optimize template generation:</p>
                             <div class="consultation-types">
                                 <div class="consultation-card" onclick="selectConsultationType('general')">
                                     <div class="consultation-icon">
@@ -388,7 +360,7 @@
                             <!-- Will be populated based on consultation type -->
                         </div>
                         <div class="prompt-input">
-                            <textarea id="initialPrompt" placeholder="🤖 Enter patient presentation for AI-powered clinical analysis...&#10;&#10;Examples:&#10;• '65-year-old male presents with acute chest pain and diaphoresis'&#10;• 'Patient reports sudden onset dyspnea with pleuritic chest pain'&#10;• 'Severe thunderclap headache with photophobia and neck stiffness'&#10;&#10;💡 Smart Med Notes AI will analyze your input and generate targeted follow-up questions using clinical decision support algorithms"></textarea>
+                            <textarea id="initialPrompt" placeholder="🤖 Enter patient presentation for AI-powered clinical analysis...&#10;&#10;Examples:&#10;• '65-year-old male presents with acute chest pain and diaphoresis'&#10;• 'Patient reports sudden onset dyspnea with pleuritic chest pain'&#10;• 'Severe thunderclap headache with photophobia and neck stiffness'&#10;&#10;💡 Maeda Health AI will analyze your input and generate targeted follow-up questions using clinical decision support algorithms"></textarea>
                             <button class="btn btn-primary" onclick="processPrompt()">🧠 Activate AI Clinical Analysis</button>
                         </div>
                     </div>
@@ -439,7 +411,7 @@
                         </div>
                         
                         <div class="followup-questions">
-                            <p class="ai-response" id="aiResponse">🤖 Smart Med Notes AI is performing multi-stage clinical reasoning using AHPRA-approved standards:</p>
+                            <p class="ai-response" id="aiResponse">🤖 Maeda Health AI is performing multi-stage clinical reasoning using AHPRA-approved standards:</p>
                             <div class="questions-grid" id="questionsGrid">
                                 <!-- Questions will be populated by JavaScript -->
                             </div>
@@ -479,7 +451,7 @@
             <div class="early-access-content">
                 <div class="early-access-header">
                     <h2>🚀 Join the Early Access Program</h2>
-                    <p class="early-access-subtitle">Be among the first to experience Smart Med Notes AI and help shape the future of medical documentation</p>
+                    <p class="early-access-subtitle">Be among the first to experience Maeda Health AI and help shape the future of medical documentation</p>
                 </div>
                 
                 <div class="early-access-stats">
@@ -523,10 +495,9 @@
 
                     <form class="early-access-form" id="earlyAccessForm" action="https://formsubmit.co/3e2b08b13fd6229c192c7c6f8c811867" method="POST">
                         <!-- FormSubmit Configuration -->
-                        <input type="hidden" name="_subject" value="🚀 New Early Access Registration - Smart Med Notes AI">
+                        <input type="hidden" name="_subject" value="🚀 New Early Access Registration - Maeda Health AI">
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_template" value="table">
-                        <input type="hidden" name="_next" value="https://dub8fg1x2iiml.amplifyapp.com/early-access-success.html">
                         
                         <div class="form-header">
                             <h3>🔐 Secure Your Early Access</h3>
@@ -595,7 +566,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="ea-interest">Primary Interest in Smart Med Notes AI *</label>
+                            <label for="ea-interest">Primary Interest in Maeda Health AI *</label>
                             <select id="ea-interest" name="primary_interest" required>
                                 <option value="">Select Primary Interest</option>
                                 <option value="Clinical Documentation Efficiency">Clinical Documentation Efficiency</option>
@@ -623,14 +594,14 @@
 
                         <div class="form-group">
                             <label for="ea-comments">Additional Comments or Specific Requirements</label>
-                            <textarea id="ea-comments" name="comments" placeholder="Tell us about your specific needs, current challenges with medical documentation, or any questions about Smart Med Notes AI..." rows="3"></textarea>
+                            <textarea id="ea-comments" name="comments" placeholder="Tell us about your specific needs, current challenges with medical documentation, or any questions about Maeda Health AI..." rows="3"></textarea>
                         </div>
 
                         <div class="form-group checkbox-group">
                             <label class="checkbox-label">
                                 <input type="checkbox" name="updates_consent" value="yes" required>
                                 <span class="checkmark"></span>
-                                I agree to receive updates about Smart Med Notes AI development and early access program *
+                                I agree to receive updates about Maeda Health AI development and early access program *
                             </label>
                         </div>
 
@@ -648,7 +619,7 @@
                         </button>
 
                         <div class="form-footer">
-                            <p><i class="fas fa-shield-alt"></i> Your information is secure and will only be used for the Smart Med Notes AI early access program</p>
+                            <p><i class="fas fa-shield-alt"></i> Your information is secure and will only be used for the Maeda Health AI early access program</p>
                         </div>
                     </form>
                 </div>

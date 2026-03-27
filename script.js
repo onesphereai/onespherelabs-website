@@ -271,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Smart Med Notes Demo Functionality with Multi-Stage Reasoning and Consultation Types
+// Maeda Health Demo Functionality with Multi-Stage Reasoning and Consultation Types
 let selectedQuestions = [];
 let currentPrompt = '';
 let currentScenario = null;
@@ -665,8 +665,8 @@ const medicalScenarios = {
 };
 
 function openDemo(demoType) {
-    if (demoType === 'smartMedNotes') {
-        document.getElementById('smartMedNotesDemo').style.display = 'block';
+    if (demoType === 'maedaHealth') {
+        document.getElementById('maedaHealthDemo').style.display = 'block';
         document.body.style.overflow = 'hidden';
         resetDemo();
     }
@@ -722,7 +722,7 @@ Examples for General Consultation:
 • 'Patient reports persistent cough with green sputum for 1 week'
 • '70-year-old male with worsening shortness of breath on exertion'
 
-💡 Smart Med Notes AI will generate RACGP-compliant documentation`,
+💡 Maeda Health AI will generate RACGP-compliant documentation`,
         
         'mental-health': `🤖 Enter patient presentation for mental health assessment...
 
@@ -731,7 +731,7 @@ Examples for Mental Health Consultation:
 • '28-year-old presents with panic attacks and sleep disturbance'
 • 'Adolescent with behavioral changes and social withdrawal'
 
-💡 Smart Med Notes AI will create RACGP Mental Health Care Plan template`,
+💡 Maeda Health AI will create RACGP Mental Health Care Plan template`,
         
         'procedure': `🤖 Enter procedure details for documentation...
 
@@ -740,7 +740,7 @@ Examples for Procedure Documentation:
 • 'Joint injection - corticosteroid injection to right knee'
 • 'Minor surgery - ingrown toenail removal with phenol application'
 
-💡 Smart Med Notes AI will generate AHPRA-compliant procedure documentation`,
+💡 Maeda Health AI will generate AHPRA-compliant procedure documentation`,
         
         'chronic-disease': `🤖 Enter patient details for CDM plan creation...
 
@@ -749,14 +749,14 @@ Examples for Chronic Disease Management:
 • 'Patient with COPD requiring multidisciplinary care coordination'
 • 'Chronic heart failure patient needing care plan review'
 
-💡 Smart Med Notes AI will create Medicare-compliant CDM template`
+💡 Maeda Health AI will create Medicare-compliant CDM template`
     };
     
     textarea.placeholder = placeholders[type];
 }
 
 function closeDemo() {
-    document.getElementById('smartMedNotesDemo').style.display = 'none';
+    document.getElementById('maedaHealthDemo').style.display = 'none';
     document.body.style.overflow = 'auto';
     resetDemo();
 }
@@ -974,7 +974,7 @@ function showAIThinking() {
     `;
     
     setTimeout(() => {
-        aiResponse.innerHTML = `🤖 Smart Med Notes AI is performing multi-stage clinical reasoning using AHPRA-approved standards:`;
+        aiResponse.innerHTML = `🤖 Maeda Health AI is performing multi-stage clinical reasoning using AHPRA-approved standards:`;
     }, 1500);
 }
 
@@ -1108,7 +1108,7 @@ function generateGeneralConsultationTemplate() {
         
         <div class="document-section">
             <h6>History of Present Illness (AI-Enhanced)</h6>
-            <p>🤖 Smart Med Notes AI Analysis: Comprehensive symptom assessment using RACGP clinical guidelines.</p>
+            <p>🤖 Maeda Health AI Analysis: Comprehensive symptom assessment using RACGP clinical guidelines.</p>
             ${generateSelectedQuestionsContent()}
         </div>
         
@@ -1150,7 +1150,7 @@ function generateMentalHealthTemplate() {
         
         <div class="document-section">
             <h6>Mental State Assessment (AI-Enhanced)</h6>
-            <p>🤖 Smart Med Notes AI has analyzed presentation using RACGP mental health assessment tools:</p>
+            <p>🤖 Maeda Health AI has analyzed presentation using RACGP mental health assessment tools:</p>
             ${generateSelectedQuestionsContent()}
         </div>
         
@@ -1322,8 +1322,8 @@ function generateDifferentialDiagnosis() {
 function generateAIAttribution(config) {
     return `
         <div class="document-section ai-attribution">
-            <h6>Smart Med Notes AI Clinical Attribution</h6>
-            <p style="font-style: italic; color: #64748b;">📋 This ${config.name.toLowerCase()} documentation was generated using Smart Med Notes AI technology, incorporating:</p>
+            <h6>Maeda Health AI Clinical Attribution</h6>
+            <p style="font-style: italic; color: #64748b;">📋 This ${config.name.toLowerCase()} documentation was generated using Maeda Health AI technology, incorporating:</p>
             <ul style="font-style: italic; color: #64748b; font-size: 0.9rem;">
                 <li>RACGP-endorsed clinical templates and guidelines</li>
                 <li>Medicare-compliant documentation standards</li>
@@ -1347,7 +1347,7 @@ function generateAIAttribution(config) {
 
 // Close demo when clicking outside
 document.addEventListener('click', function(event) {
-    const demoModal = document.getElementById('smartMedNotesDemo');
+    const demoModal = document.getElementById('maedaHealthDemo');
     if (event.target === demoModal) {
         closeDemo();
     }

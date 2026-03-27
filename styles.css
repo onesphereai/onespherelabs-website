@@ -43,7 +43,6 @@ body {
     transition: all 0.3s ease;
     border-bottom: 1px solid rgba(74, 155, 155, 0.1);
 }
-}
 
 .nav-container {
     max-width: 1200px;
@@ -147,10 +146,13 @@ body {
 
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: 3rem auto 0;
     gap: 2rem;
-    margin-top: 3rem;
 }
+
+/* TEMPORARY — remove when WEB-18 is implemented */
 
 .product-card {
     background: white;
