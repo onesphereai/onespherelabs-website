@@ -41,13 +41,29 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { passive: true });
   }
 
-  // Floating particles in hero
+  // Floating vapor orbs in hero
   var heroEl = document.querySelector('.hero');
   if (heroEl && !prefersReducedMotion) {
-    for (var i = 0; i < 20; i++) {
-      var particle = document.createElement('div');
-      particle.style.cssText = 'position:absolute;width:' + (Math.random() * 3 + 1) + 'px;height:' + (Math.random() * 3 + 1) + 'px;background:rgba(150,190,255,' + (Math.random() * 0.4 + 0.1) + ');border-radius:50%;left:' + (Math.random() * 100) + '%;top:' + (Math.random() * 100) + '%;z-index:2;pointer-events:none;animation:floatUp ' + (Math.random() * 8 + 6) + 's linear infinite;animation-delay:' + (Math.random() * 8) + 's;';
-      heroEl.appendChild(particle);
+    // Large vapor mist orbs
+    for (var i = 0; i < 12; i++) {
+      var orb = document.createElement('div');
+      var size = Math.random() * 60 + 20;
+      var isLarge = i < 4;
+      if (isLarge) size = Math.random() * 100 + 50;
+      var opacity = isLarge ? (Math.random() * 0.15 + 0.05) : (Math.random() * 0.25 + 0.1);
+      var anim = isLarge ? 'floatUpSlow' : 'floatUp';
+      var dur = Math.random() * 10 + 8;
+      var blue = Math.floor(Math.random() * 80 + 120);
+      var green = Math.floor(Math.random() * 60 + 150);
+      orb.style.cssText = 'position:absolute;width:' + size + 'px;height:' + size + 'px;background:radial-gradient(circle,rgba(' + green + ',' + blue + ',255,' + opacity + ') 0%,transparent 70%);border-radius:50%;left:' + (Math.random() * 80 + 10) + '%;top:' + (Math.random() * 100) + '%;z-index:2;pointer-events:none;filter:blur(' + (size * 0.3) + 'px);animation:' + anim + ' ' + dur + 's linear infinite;animation-delay:' + (Math.random() * 10) + 's;';
+      heroEl.appendChild(orb);
+    }
+    // Small sparkle particles near the beam
+    for (var j = 0; j < 15; j++) {
+      var spark = document.createElement('div');
+      var sparkSize = Math.random() * 4 + 2;
+      spark.style.cssText = 'position:absolute;width:' + sparkSize + 'px;height:' + sparkSize + 'px;background:rgba(200,220,255,' + (Math.random() * 0.6 + 0.3) + ');border-radius:50%;left:' + (Math.random() * 30 + 40) + '%;top:' + (Math.random() * 100) + '%;z-index:3;pointer-events:none;animation:floatUp ' + (Math.random() * 6 + 5) + 's linear infinite;animation-delay:' + (Math.random() * 6) + 's;';
+      heroEl.appendChild(spark);
     }
   }
 });
