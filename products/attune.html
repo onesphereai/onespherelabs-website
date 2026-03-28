@@ -38,7 +38,7 @@
             <button class="nav__link" role="menuitem" aria-haspopup="true" aria-expanded="false" id="products-trigger">Products <svg class="nav__chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
             <ul class="nav__dropdown" role="menu" aria-labelledby="products-trigger">
               <li role="none"><a href="/products/maeda-health.html" role="menuitem" class="nav__dropdown-item"><span class="nav__dropdown-name">Maeda Health</span><span class="nav__dropdown-desc">AI for Australian doctors</span></a></li>
-              <li role="none"><a href="/products/vigility.html" role="menuitem" class="nav__dropdown-item"><span class="nav__dropdown-name">Vigility</span><span class="nav__dropdown-desc">Compliance for RTOs & aged care</span></a></li>
+              <li role="none"><a href="/products/vigility.html" role="menuitem" class="nav__dropdown-item"><span class="nav__dropdown-name">Vigility</span><span class="nav__dropdown-desc">Compliance for RTOs &amp; aged care</span></a></li>
               <li role="none"><a href="/products/attune.html" role="menuitem" class="nav__dropdown-item"><span class="nav__dropdown-name">Attune</span><span class="nav__dropdown-desc">AI coach for neurodivergent parenting</span></a></li>
               <li role="none"><a href="/products/petsense.html" role="menuitem" class="nav__dropdown-item"><span class="nav__dropdown-name">Petsense</span><span class="nav__dropdown-desc">Pet behaviour analysis</span></a></li>
             </ul>
@@ -52,91 +52,106 @@
     </nav>
 
     <main id="main">
-      <!-- Product Hero -->
-      <section class="product-hero">
-        <div class="product-hero__container">
-          <span class="product-hero__eyebrow animate-on-scroll">For Parents of Neurodivergent Children</span>
-          <h1 class="product-hero__title animate-on-scroll">Attune</h1>
-          <p class="product-hero__tagline" data-word-spotlight>A private AI coach that understands your child.</p>
-          <div class="product-hero__actions animate-on-scroll">
-            <a href="https://attuneapp.com" class="btn btn-cta" target="_blank" rel="noopener noreferrer">Visit attuneapp.com</a>
-            <a href="https://attuneapp.com" class="btn btn-secondary">Join the waitlist</a>
+
+      <!-- Section 1: Cinematic Hero -->
+      <section class="cinematic-hero">
+        <div class="cinematic-hero__light-beam"></div>
+        <div class="cinematic-hero__haze"></div>
+        <div class="cinematic-hero__label">For Parents of Neurodivergent Children</div>
+        <h1 class="cinematic-hero__title">Attune</h1>
+        <p class="cinematic-hero__subtitle">A private AI coach that understands your child.</p>
+        <div class="cinematic-hero__cta-group">
+          <a href="https://attuneapp.com" class="hero-btn-primary" target="_blank" rel="noopener noreferrer">Join the Waitlist &rarr;</a>
+          <a href="https://attuneapp.com" class="hero-btn-secondary" target="_blank" rel="noopener noreferrer">Visit attuneapp.com</a>
+        </div>
+        <div class="cinematic-hero__phone-mockup animate-in">
+          <img src="/assets/images/products/attune/hero-mobile.png" alt="Attune App" width="320" height="640" loading="eager">
+          <div class="cinematic-hero__phone-fade"></div>
+        </div>
+      </section>
+
+      <!-- Section 2: Scroll-Linked Narrative -->
+      <section class="narrative">
+        <p class="narrative__text" id="spotlight-text">
+          Parents of neurodivergent children face difficult moments every day, often without support nearby. Generic advice does not account for your child's unique diagnosis, sensory needs, or triggers. Attune gives parents a real-time AI parenting coach that actually knows their child. Point your phone during a difficult moment and get instant, personalised guidance shaped by your child's specific profile.
+        </p>
+      </section>
+
+      <!-- Section 3: Bento Grid -->
+      <div class="cinematic-section-header" id="features">
+        <div class="cinematic-section-header__label">Key Features</div>
+        <h2 class="cinematic-section-header__title">Understand your child.<br>In the moment.</h2>
+      </div>
+
+      <div class="cinematic-bento-grid" id="bento-grid">
+        <div class="bento-card featured animate-in">
+          <div class="bento-card__glow"></div>
+          <div class="bento-card__label">Core Feature</div>
+          <h3 class="bento-card__title">Live Mode</h3>
+          <p class="bento-card__desc">Both cameras work at once. The front reads your stress. The back reads your child's behaviour. Get instant guidance.</p>
+          <div class="bento-card__image">
+            <img src="/assets/images/products/attune/feature-live-mode.png" alt="Live Mode" width="600" height="400" loading="lazy">
+          </div>
+        </div>
+        <div class="bento-card animate-in">
+          <div class="bento-card__glow"></div>
+          <div class="bento-card__label">Analysis</div>
+          <h3 class="bento-card__title">Record Mode</h3>
+          <p class="bento-card__desc">Record a 60-second clip. Get a full breakdown of what happened and what to try next.</p>
+          <div class="bento-card__image">
+            <img src="/assets/images/products/attune/feature-record-mode.png" alt="Record Mode" width="400" height="300" loading="lazy">
+          </div>
+        </div>
+        <div class="bento-card animate-in">
+          <div class="bento-card__glow"></div>
+          <div class="bento-card__label">Profile</div>
+          <h3 class="bento-card__title">Child Profile System</h3>
+          <p class="bento-card__desc">Diagnosis, sensory sensitivities, and known triggers. The AI adjusts accordingly.</p>
+          <div class="bento-card__image">
+            <img src="/assets/images/products/attune/feature-child-profile.png" alt="Child Profile" width="400" height="300" loading="lazy">
+          </div>
+        </div>
+        <div class="bento-card animate-in">
+          <div class="bento-card__glow"></div>
+          <div class="bento-card__label">Chat</div>
+          <h3 class="bento-card__title">Ask Attune</h3>
+          <p class="bento-card__desc">Get answers shaped around your child's specific diagnosis. Not generic advice.</p>
+        </div>
+        <div class="bento-card animate-in">
+          <div class="bento-card__glow"></div>
+          <div class="bento-card__label">Privacy</div>
+          <h3 class="bento-card__title">On-Device Processing</h3>
+          <p class="bento-card__desc">All analysis happens on your phone. No footage uploaded. Ever.</p>
+        </div>
+        <div class="bento-card animate-in">
+          <div class="bento-card__glow"></div>
+          <div class="bento-card__label">Values</div>
+          <h3 class="bento-card__title">Neuro-Affirming Language</h3>
+          <p class="bento-card__desc">Differences to understand, not problems to fix. Every response empowers without judgment.</p>
+        </div>
+      </div>
+
+      <!-- Section 4: Trust Badges -->
+      <div class="cinematic-trust-badges">
+        <div class="cinematic-trust-badge">Patent Filed</div>
+        <div class="cinematic-trust-badge">On-Device Processing</div>
+        <div class="cinematic-trust-badge">iOS &amp; Android</div>
+        <div class="cinematic-trust-badge">Neuro-Affirming</div>
+        <div class="cinematic-trust-badge">No Cloud Upload</div>
+      </div>
+
+      <!-- Section 5: Cinematic CTA -->
+      <section class="cinematic-cta">
+        <div class="cinematic-cta__glow"></div>
+        <div class="cinematic-cta__container animate-in">
+          <h2 class="cinematic-cta__title">A private AI coach <span>that understands your child.</span></h2>
+          <p class="cinematic-cta__subtitle">Download Attune or join the waitlist at attuneapp.com</p>
+          <div class="cinematic-cta__buttons">
+            <a href="https://attuneapp.com" class="hero-btn-primary" target="_blank" rel="noopener noreferrer">Join the Waitlist &rarr;</a>
           </div>
         </div>
       </section>
 
-      <!-- Problem / Solution -->
-      <section class="problem-solution">
-        <div class="problem-solution__container">
-          <div class="problem-solution__grid">
-            <div class="problem-solution__col">
-              <h3 class="animate-on-scroll"><span class="problem-label">The Problem</span></h3>
-              <p data-word-spotlight>Parents of neurodivergent children face difficult moments every day, often without support nearby. Generic advice does not account for each child's specific diagnosis. And most parents are left guessing.</p>
-            </div>
-            <div class="problem-solution__col">
-              <h3 class="animate-on-scroll" data-delay="100"><span class="solution-label">The Solution</span></h3>
-              <p data-word-spotlight>Attune gives parents a real-time AI parenting coach that actually knows their child. Point your phone during a difficult moment and get instant, diagnosis-aware guidance. Everything happens on your device. Nothing leaves your phone.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Features -->
-      <section class="features">
-        <div class="features__container">
-          <div class="features__header animate-on-scroll">
-            <h2>Key Features</h2>
-          </div>
-          <div class="features__grid">
-            <div class="feature-card animate-on-scroll" data-delay="0">
-              <h4 class="feature-card__name">Live Mode</h4>
-              <p class="feature-card__desc">Both cameras work at once. The front camera reads the parent's stress level. The back camera reads the child's behaviour. Within moments, Attune tells you what is happening and what to do, tailored to your child.</p>
-            </div>
-            <div class="feature-card animate-on-scroll" data-delay="50">
-              <h4 class="feature-card__name">Record Mode</h4>
-              <p class="feature-card__desc">Record a 60-second clip of a difficult moment. Attune produces a full breakdown: what happened, when your child was calm versus stressed, what you did well, and what to try next time.</p>
-            </div>
-            <div class="feature-card animate-on-scroll" data-delay="100">
-              <h4 class="feature-card__name">Ask Attune</h4>
-              <p class="feature-card__desc">Type any question and get an answer shaped around your child's specific diagnosis and profile. Not generic advice. Guidance that actually fits your family.</p>
-            </div>
-            <div class="feature-card animate-on-scroll" data-delay="150">
-              <h4 class="feature-card__name">Child Profile System</h4>
-              <p class="feature-card__desc">Every child's profile includes their diagnosis, sensory sensitivities, and known triggers. The AI adjusts its interpretation accordingly. Hand-flapping in an autistic child is understood as self-soothing, not a crisis.</p>
-            </div>
-            <div class="feature-card animate-on-scroll" data-delay="200">
-              <h4 class="feature-card__name">On-Device Processing</h4>
-              <p class="feature-card__desc">All video and audio analysis happens on the device itself. No footage is uploaded to cloud servers. No sensitive data about your child sits on someone else's system. Ever.</p>
-            </div>
-            <div class="feature-card animate-on-scroll" data-delay="250">
-              <h4 class="feature-card__name">Neuro-Affirming Language</h4>
-              <p class="feature-card__desc">Attune treats neurodivergent behaviours as differences to understand, not problems to fix. Every response is written to support and empower parents without judgment.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Trust -->
-      <section class="product-trust">
-        <div class="product-trust__container animate-on-scroll">
-          <div class="product-trust__badges">
-            <span class="trust-badge">Patent Filed</span>
-            <span class="trust-badge">On-Device Processing</span>
-            <span class="trust-badge">iOS & Android</span>
-            <span class="trust-badge">Neuro-Affirming</span>
-            <span class="trust-badge">No Cloud Upload</span>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA -->
-      <section class="product-cta">
-        <div class="product-cta__container">
-          <h2 data-word-spotlight>Start understanding your child better today</h2>
-          <p class="animate-on-scroll">Download Attune or join the waitlist at attuneapp.com</p>
-          <a href="https://attuneapp.com" class="btn btn-cta animate-on-scroll" target="_blank" rel="noopener noreferrer">Join the waitlist</a>
-        </div>
-      </section>
     </main>
 
     <footer class="footer" role="contentinfo">
@@ -176,5 +191,6 @@
     <script src="/js/animations.js"></script>
     <script src="/js/spotlight.js"></script>
     <script src="/js/glow.js"></script>
+    <script src="/js/cinematic-effects.js"></script>
 </body>
 </html>
