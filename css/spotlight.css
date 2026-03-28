@@ -17,18 +17,20 @@
  * feels like light sweeping across text, not a jump.
  */
 .word-dim {
-  opacity: 0.25;
+  opacity: 0.2 !important;
+  color: var(--text-primary) !important;
   transition: opacity 500ms var(--ease-out);
-  /* Prevent word-span line breaks from collapsing whitespace */
   display: inline;
 }
 
-/**
- * Illuminated state: word is fully visible.
- * JS adds this class based on intersection ratio.
- */
 .word-lit {
-  opacity: 1;
+  opacity: 1 !important;
+  color: var(--text-primary) !important;
+}
+
+/* Ensure spotlight parent elements are visible (override animate-on-scroll) */
+[data-word-spotlight] {
+  color: var(--text-primary);
 }
 
 /* ─────────────────────────────────────────────
