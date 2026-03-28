@@ -192,6 +192,89 @@
   }
 }
 
+/* ─────────────────────────────────────────────
+   CTA Button Inner Glow
+   A warm radial gradient follows the cursor inside
+   the button, creating a light-under-glass effect.
+   JS sets --btn-glow-x / --btn-glow-y on mousemove.
+───────────────────────────────────────────── */
+
+.btn-primary[data-btn-glow],
+.btn-cta[data-btn-glow] {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-primary[data-btn-glow]::before,
+.btn-cta[data-btn-glow]::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+  background: radial-gradient(
+    120px circle at var(--btn-glow-x, 50%) var(--btn-glow-y, 50%),
+    rgba(255, 255, 245, 0.35) 0%,
+    rgba(255, 255, 245, 0.12) 25%,
+    transparent 65%
+  );
+}
+
+.btn-primary[data-btn-glow]:hover::before,
+.btn-cta[data-btn-glow]:hover::before {
+  opacity: 1;
+}
+
+/* CTA (cyan) gets a cooler tinted glow */
+.btn-cta[data-btn-glow]::before {
+  background: radial-gradient(
+    120px circle at var(--btn-glow-x, 50%) var(--btn-glow-y, 50%),
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(6, 182, 212, 0.2) 30%,
+    transparent 65%
+  );
+}
+
+/* ─────────────────────────────────────────────
+   Card Border Light
+   A soft radial gradient overlay follows the cursor
+   on cards, illuminating the nearest border region.
+   JS sets --card-glow-x / --card-glow-y on mousemove.
+───────────────────────────────────────────── */
+
+[data-card-glow] {
+  position: relative;
+}
+
+[data-card-glow]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+  background: radial-gradient(
+    350px circle at var(--card-glow-x, 50%) var(--card-glow-y, 50%),
+    rgba(99, 102, 241, 0.12) 0%,
+    rgba(99, 102, 241, 0.04) 40%,
+    transparent 65%
+  );
+}
+
+[data-card-glow]:hover::after {
+  opacity: 1;
+}
+
+/* Border brightens toward cursor — highlight via box-shadow */
+[data-card-glow]:hover {
+  border-color: rgba(99, 102, 241, 0.25);
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .glow-blob,
@@ -202,5 +285,10 @@
   .glass-card,
   .card-glow {
     transition: none;
+  }
+
+  [data-btn-glow]::before,
+  [data-card-glow]::after {
+    display: none;
   }
 }
