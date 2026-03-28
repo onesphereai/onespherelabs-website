@@ -290,9 +290,9 @@
   height: 200px;
   background: radial-gradient(
     circle closest-side,
-    rgba(255, 255, 245, 0.9) 5%,
-    rgba(255, 255, 255, 0.5) 25%,
-    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 170, 129, 0.7) 5%,
+    rgba(210, 106, 58, 0.3) 30%,
+    rgba(210, 106, 58, 0.08) 55%,
     transparent 100%
   );
   border-radius: 50%;
@@ -301,8 +301,8 @@
   transition: opacity 0.3s ease;
   pointer-events: none;
   z-index: 0;
-  mix-blend-mode: overlay;
-  filter: blur(2px);
+  mix-blend-mode: screen;
+  filter: blur(4px);
 }
 
 .btn-text {
