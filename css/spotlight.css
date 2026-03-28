@@ -1,0 +1,145 @@
+/* =========================================
+   spotlight.css — OneSphere Labs
+   Scroll-linked word spotlight (T1) and
+   mouse radial-gradient overlay (T2).
+   ========================================= */
+
+/* ─────────────────────────────────────────────
+   T1 — Word Spotlight
+   Words start dim and are illuminated by JS
+   as their parent element scrolls into view.
+───────────────────────────────────────────── */
+
+/**
+ * Default state: word is dim.
+ * Transition uses the site's cinematic easing token.
+ * Duration is deliberately long (500ms) so the progression
+ * feels like light sweeping across text, not a jump.
+ */
+.word-dim {
+  opacity: 0.25;
+  transition: opacity 500ms var(--ease-out);
+  /* Prevent word-span line breaks from collapsing whitespace */
+  display: inline;
+}
+
+/**
+ * Illuminated state: word is fully visible.
+ * JS adds this class based on intersection ratio.
+ */
+.word-lit {
+  opacity: 1;
+}
+
+/* ─────────────────────────────────────────────
+   T2 — Mouse Radial Gradient Overlay
+   A fixed, pointer-events-none layer that
+   renders a soft torch-beam centred on the
+   cursor using CSS custom properties set
+   by spotlight.js on <html>.
+───────────────────────────────────────────── */
+
+/**
+ * Default state: hidden.
+ * The overlay is created by JS and only becomes
+ * visible after the first mousemove event.
+ *
+ * z-index: 5 — above page content (z-index 1-2 from
+ * .section-glow, .hero-canvas etc.) but below the
+ * navigation (--z-sticky: 200) and dropdowns (--z-dropdown: 100).
+ *
+ * mix-blend-mode: screen — allows the gradient to
+ * add light to underlying dark content without
+ * obscuring text or interactive elements.
+ *
+ * pointer-events: none — the overlay must never
+ * intercept mouse or touch events.
+ */
+.page-spotlight {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  /* Smooth transition when entering/leaving the hero zone */
+  transition: opacity 400ms var(--ease-out);
+
+  /*
+   * The radial gradient is recomputed by the browser on every repaint
+   * whenever --mouse-x or --mouse-y changes. No JS paint involved.
+   *
+   * Gradient anatomy:
+   *   centre (0%)  — brightest white-blue highlight
+   *   mid    (30%) — faint indigo tint matching --primary
+   *   edge   (70%) — fully transparent
+   *
+   * Radius is expressed in viewport units (35vw) so the spotlight
+   * scales proportionally on all screen sizes.
+   */
+  background: radial-gradient(
+    circle 35vw at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 255, 255, 0.04)   0%,
+    rgba(99, 102, 241, 0.06)    20%,
+    rgba(99, 102, 241, 0.03)    40%,
+    transparent                 70%
+  );
+
+  mix-blend-mode: screen;
+  will-change: background;
+}
+
+/**
+ * Active state: overlay is visible.
+ * JS adds this class after the first mousemove.
+ */
+.page-spotlight.is-active {
+  opacity: 1;
+}
+
+/* ─────────────────────────────────────────────
+   Mobile considerations
+   On small screens the word-dim effect is
+   softened: a slightly higher base opacity
+   reduces visual noise on dense paragraphs.
+   The page-spotlight overlay is never shown
+   on touch devices (JS guards by pointer type),
+   but the class is included here defensively.
+───────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .word-dim {
+    /* Slightly higher dim opacity on mobile so text remains readable
+       in case JS cannot split the element (e.g. very short paragraphs). */
+    opacity: 0.4;
+  }
+
+  /* Touch devices: overlay is not created by JS, but defend here too */
+  .page-spotlight {
+    display: none;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   prefers-reduced-motion overrides
+   JS already shows all words at full opacity
+   and skips T2 when reduced motion is active,
+   but the CSS rules here provide a belt-and-
+   suspenders guarantee for cases where the
+   IIFE has not run yet (e.g. JS disabled,
+   slow network before DOMContentLoaded).
+───────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .word-dim {
+    opacity: 1;
+    transition: none;
+  }
+
+  .word-lit {
+    opacity: 1;
+  }
+
+  .page-spotlight {
+    display: none;
+  }
+}
