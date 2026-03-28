@@ -97,16 +97,17 @@ p {
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
-  padding: var(--space-3) var(--space-6);
+  padding: 16px 36px;
   font-family: var(--font-body);
-  font-size: var(--text-sm);
-  font-weight: 500;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
   line-height: 1;
   border: 2px solid transparent;
   border-radius: var(--btn-radius);
   cursor: pointer;
-  transition: all var(--duration-normal) var(--ease-out);
-  min-height: 44px;
+  transition: all var(--duration-slow) var(--ease-out);
+  min-height: 52px;
   text-decoration: none;
 }
 
@@ -124,7 +125,10 @@ p {
 .btn-primary:hover {
   background-color: var(--primary-hover);
   border-color: var(--primary-hover);
-  box-shadow: 0 0 20px var(--glow-primary);
+  box-shadow:
+    0 0 20px rgba(99, 102, 241, 0.5),
+    0 0 50px rgba(99, 102, 241, 0.25),
+    0 0 80px rgba(99, 102, 241, 0.1);
 }
 
 .btn-secondary {
@@ -136,18 +140,23 @@ p {
 .btn-secondary:hover {
   border-color: var(--border-hover);
   background-color: var(--glass-bg);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
 }
 
 .btn-cta {
   background-color: var(--cta);
   color: var(--cta-text);
   border-color: var(--cta);
+  font-weight: 700;
 }
 
 .btn-cta:hover {
   background-color: var(--cta-hover);
   border-color: var(--cta-hover);
-  box-shadow: 0 0 20px var(--glow-accent), 0 0 60px rgba(6, 182, 212, 0.15);
+  box-shadow:
+    0 0 20px rgba(6, 182, 212, 0.5),
+    0 0 50px rgba(6, 182, 212, 0.25),
+    0 0 80px rgba(6, 182, 212, 0.1);
 }
 
 /* Focus ring utility */
