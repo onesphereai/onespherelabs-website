@@ -186,40 +186,44 @@
       ctx.shadowBlur = 0;
     }
 
-    // ═══ MASSIVE IMPACT GLOW ═══
+    // ✦·✦·✦ MASSIVE IMPACT GLOW ✦·✦·✦
     var ip = 1 + Math.sin(time * 1.5) * 0.1;
 
-    var g4 = ctx.createRadialGradient(cx, cy, 0, cx, cy, 400 * ip);
+    // Layer 4: Outermost haze (Huge)
+    var g4 = ctx.createRadialGradient(cx, cy, 0, cx, cy, 1000 * ip);
     g4.addColorStop(0, 'rgba(60,85,160,0.15)');
     g4.addColorStop(0.3, 'rgba(40,60,130,0.08)');
     g4.addColorStop(0.6, 'rgba(20,35,90,0.03)');
     g4.addColorStop(1, 'rgba(0,0,0,0)');
     ctx.fillStyle = g4;
     ctx.beginPath();
-    ctx.arc(cx, cy, 500 * ip, 0, Math.PI * 2);
+    ctx.arc(cx, cy, 1200 * ip, 0, Math.PI * 2);
     ctx.fill();
 
-    var g3 = ctx.createRadialGradient(cx, cy, 0, cx, cy, 300 * ip);
+    // Layer 3: Medium outer glow
+    var g3 = ctx.createRadialGradient(cx, cy, 0, cx, cy, 750 * ip);
     g3.addColorStop(0, 'rgba(150,180,255,0.28)');
     g3.addColorStop(0.3, 'rgba(110,145,240,0.16)');
     g3.addColorStop(0.6, 'rgba(70,100,200,0.06)');
     g3.addColorStop(1, 'rgba(0,0,0,0)');
     ctx.fillStyle = g3;
     ctx.beginPath();
-    ctx.arc(cx, cy, 300 * ip, 0, Math.PI * 2);
+    ctx.arc(cx, cy, 750 * ip, 0, Math.PI * 2);
     ctx.fill();
 
-    var g2 = ctx.createRadialGradient(cx, cy, 0, cx, cy, 150 * ip);
+    // Layer 2: Inner bright glow
+    var g2 = ctx.createRadialGradient(cx, cy, 0, cx, cy, 400 * ip);
     g2.addColorStop(0, 'rgba(220,230,255,0.45)');
     g2.addColorStop(0.3, 'rgba(180,200,255,0.25)');
     g2.addColorStop(0.7, 'rgba(130,160,240,0.08)');
     g2.addColorStop(1, 'rgba(0,0,0,0)');
     ctx.fillStyle = g2;
     ctx.beginPath();
-    ctx.arc(cx, cy, 150 * ip, 0, Math.PI * 2);
+    ctx.arc(cx, cy, 400 * ip, 0, Math.PI * 2);
     ctx.fill();
 
-    var g1 = ctx.createRadialGradient(cx, cy, 0, cx, cy, 70 * ip);
+    // Layer 1: White hot core
+    var g1 = ctx.createRadialGradient(cx, cy, 0, cx, cy, 200 * ip);
     g1.addColorStop(0, 'rgba(255,255,255,0.95)');
     g1.addColorStop(0.15, 'rgba(255,248,235,0.75)');
     g1.addColorStop(0.4, 'rgba(230,215,255,0.4)');
@@ -227,7 +231,7 @@
     g1.addColorStop(1, 'rgba(0,0,0,0)');
     ctx.fillStyle = g1;
     ctx.beginPath();
-    ctx.arc(cx, cy, 70 * ip, 0, Math.PI * 2);
+    ctx.arc(cx, cy, 200 * ip, 0, Math.PI * 2);
     ctx.fill();
 
     // ═══ SOFT LIGHT WASH — no V, no lines, just blended radial ═══
