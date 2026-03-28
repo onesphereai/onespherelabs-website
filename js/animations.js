@@ -41,28 +41,35 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { passive: true });
   }
 
-  // Floating vapor orbs in hero
+  // Floating vapor clouds in hero
   var heroEl = document.querySelector('.hero');
   if (heroEl && !prefersReducedMotion) {
-    // Large vapor mist orbs
-    for (var i = 0; i < 12; i++) {
+    // Large vapor/mist clouds — clearly visible
+    var vaporConfigs = [
+      { size: 200, blur: 50, opacity: 0.12, x: 45, y: 60, dur: 18, anim: 'floatUpSlow' },
+      { size: 250, blur: 60, opacity: 0.1, x: 55, y: 80, dur: 22, anim: 'floatUpSlow' },
+      { size: 180, blur: 45, opacity: 0.15, x: 35, y: 40, dur: 16, anim: 'floatUpSlow' },
+      { size: 300, blur: 70, opacity: 0.08, x: 60, y: 70, dur: 25, anim: 'floatUpSlow' },
+      { size: 160, blur: 40, opacity: 0.14, x: 50, y: 90, dur: 14, anim: 'floatUp' },
+      { size: 220, blur: 55, opacity: 0.1, x: 40, y: 50, dur: 20, anim: 'floatUpSlow' },
+    ];
+    vaporConfigs.forEach(function(v) {
+      var cloud = document.createElement('div');
+      cloud.style.cssText = 'position:absolute;width:' + v.size + 'px;height:' + v.size + 'px;background:radial-gradient(circle,rgba(140,180,255,' + v.opacity + ') 0%,rgba(100,150,255,' + (v.opacity * 0.5) + ') 40%,transparent 70%);border-radius:50%;left:' + v.x + '%;top:' + v.y + '%;z-index:2;pointer-events:none;filter:blur(' + v.blur + 'px);animation:' + v.anim + ' ' + v.dur + 's linear infinite;animation-delay:' + (Math.random() * 8) + 's;';
+      heroEl.appendChild(cloud);
+    });
+    // Medium orbs rising from the sphere impact
+    for (var i = 0; i < 8; i++) {
       var orb = document.createElement('div');
-      var size = Math.random() * 60 + 20;
-      var isLarge = i < 4;
-      if (isLarge) size = Math.random() * 100 + 50;
-      var opacity = isLarge ? (Math.random() * 0.15 + 0.05) : (Math.random() * 0.25 + 0.1);
-      var anim = isLarge ? 'floatUpSlow' : 'floatUp';
-      var dur = Math.random() * 10 + 8;
-      var blue = Math.floor(Math.random() * 80 + 120);
-      var green = Math.floor(Math.random() * 60 + 150);
-      orb.style.cssText = 'position:absolute;width:' + size + 'px;height:' + size + 'px;background:radial-gradient(circle,rgba(' + green + ',' + blue + ',255,' + opacity + ') 0%,transparent 70%);border-radius:50%;left:' + (Math.random() * 80 + 10) + '%;top:' + (Math.random() * 100) + '%;z-index:2;pointer-events:none;filter:blur(' + (size * 0.3) + 'px);animation:' + anim + ' ' + dur + 's linear infinite;animation-delay:' + (Math.random() * 10) + 's;';
+      var size = Math.random() * 80 + 40;
+      orb.style.cssText = 'position:absolute;width:' + size + 'px;height:' + size + 'px;background:radial-gradient(circle,rgba(160,200,255,' + (Math.random() * 0.2 + 0.08) + ') 0%,transparent 70%);border-radius:50%;left:' + (Math.random() * 30 + 40) + '%;bottom:' + (Math.random() * 20) + '%;z-index:2;pointer-events:none;filter:blur(' + (size * 0.35) + 'px);animation:floatUp ' + (Math.random() * 8 + 8) + 's linear infinite;animation-delay:' + (Math.random() * 10) + 's;';
       heroEl.appendChild(orb);
     }
-    // Small sparkle particles near the beam
-    for (var j = 0; j < 15; j++) {
+    // Sparkle particles near beam
+    for (var j = 0; j < 10; j++) {
       var spark = document.createElement('div');
-      var sparkSize = Math.random() * 4 + 2;
-      spark.style.cssText = 'position:absolute;width:' + sparkSize + 'px;height:' + sparkSize + 'px;background:rgba(200,220,255,' + (Math.random() * 0.6 + 0.3) + ');border-radius:50%;left:' + (Math.random() * 30 + 40) + '%;top:' + (Math.random() * 100) + '%;z-index:3;pointer-events:none;animation:floatUp ' + (Math.random() * 6 + 5) + 's linear infinite;animation-delay:' + (Math.random() * 6) + 's;';
+      var sparkSize = Math.random() * 3 + 2;
+      spark.style.cssText = 'position:absolute;width:' + sparkSize + 'px;height:' + sparkSize + 'px;background:rgba(220,235,255,' + (Math.random() * 0.7 + 0.3) + ');border-radius:50%;left:' + (Math.random() * 20 + 45) + '%;top:' + (Math.random() * 100) + '%;z-index:3;pointer-events:none;animation:floatUp ' + (Math.random() * 5 + 4) + 's linear infinite;animation-delay:' + (Math.random() * 5) + 's;';
       heroEl.appendChild(spark);
     }
   }
