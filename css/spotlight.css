@@ -24,19 +24,15 @@
 }
 
 /**
- * Default state: word is dim.
- * Transition uses the site's cinematic easing token with a fallback value.
- * Duration is deliberately long (500ms) so the progression
- * feels like light sweeping across text, not a jump.
+ * Word spans created by spotlight.js.
+ * Opacity is controlled entirely via inline style.opacity from JS
+ * (direct numeric interpolation for smooth cinematic progression).
+ * The CSS transition provides the 500ms ease so changes feel organic.
  */
 .word-dim {
-  opacity: 0.25 !important;
+  opacity: 0.25;
   transition: opacity 500ms var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1));
   display: inline;
-}
-
-.word-lit {
-  opacity: 1 !important;
 }
 
 /* Ensure spotlight parent elements are visible (override animate-on-scroll) */
@@ -121,9 +117,8 @@
 
 @media (max-width: 768px) {
   .word-dim {
-    /* Slightly higher dim opacity on mobile so text remains readable
-       in case JS cannot split the element (e.g. very short paragraphs). */
-    opacity: 0.4;
+    /* Higher base opacity on mobile for readability */
+    opacity: 0.4 !important;
   }
 
   /* Touch devices: overlay is not created by JS, but defend here too */
@@ -144,12 +139,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .word-dim {
-    opacity: 1;
-    transition: none;
-  }
-
-  .word-lit {
-    opacity: 1;
+    opacity: 1 !important;
+    transition: none !important;
   }
 
   .page-spotlight {

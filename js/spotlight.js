@@ -87,13 +87,15 @@
       targets.forEach(function (el) {
         if (hasChildElements(el)) return;
         var spans = splitIntoWordSpans(el);
-        spans.forEach(function (s) { s.classList.add('word-lit'); });
+        spans.forEach(function (s) {
+          s.style.opacity = '1';
+        });
       });
       return;
     }
 
     // Map from element -> its word spans
-    var elementWordMap = new Map();
+    var elementWordMap = [];
 
     targets.forEach(function (el) {
       // Skip elements that already contain child element nodes
@@ -102,40 +104,55 @@
       var wordSpans = splitIntoWordSpans(el);
       if (!wordSpans.length) return;
 
-      elementWordMap.set(el, wordSpans);
+      elementWordMap.push({ el: el, spans: wordSpans });
     });
 
-    if (!elementWordMap.size) return;
+    if (!elementWordMap.length) return;
 
     function updateSpotlight() {
       var vh = window.innerHeight;
 
-      elementWordMap.forEach(function (spans, el) {
+      for (var i = 0; i < elementWordMap.length; i++) {
+        var entry = elementWordMap[i];
+        var el = entry.el;
+        var spans = entry.spans;
         var rect = el.getBoundingClientRect();
-
-        // Progress: 0 when element top reaches bottom of viewport
-        //           1 when element bottom reaches top of viewport
-        var elementHeight = rect.height || 1;
-        var travelDistance = vh + elementHeight;
-        var distanceTravelled = vh - rect.top;
-        var progress = Math.min(1, Math.max(0, distanceTravelled / travelDistance));
-
         var total = spans.length;
-        var litCount = Math.round(progress * total);
 
-        spans.forEach(function (s, idx) {
-          if (idx < litCount) {
-            s.classList.add('word-lit');
+        // Progress calculation:
+        //   Start (0): element top enters viewport bottom (rect.top = vh)
+        //   End   (1): element top reaches 20% from viewport top (rect.top = vh * 0.2)
+        // This spreads the sweep across 80% of the viewport height,
+        // giving a slow, cinematic progression regardless of element size.
+        var startTrigger = vh;
+        var endTrigger = vh * 0.2;
+        var scrollProgress = Math.min(1, Math.max(0,
+          (startTrigger - rect.top) / (startTrigger - endTrigger)
+        ));
+
+        for (var j = 0; j < total; j++) {
+          // Each word has its own activation point in the scroll timeline
+          var wordProgress = j / total;
+          var diff = scrollProgress - wordProgress;
+
+          if (diff > 0.02) {
+            // Fully lit — past the activation point
+            spans[j].style.opacity = '1';
+          } else if (diff > -0.01) {
+            // Smooth transition zone — interpolate between dim and lit
+            var t = (diff + 0.01) / 0.03;
+            spans[j].style.opacity = String(0.25 + 0.75 * t);
           } else {
-            s.classList.remove('word-lit');
+            // Not yet reached — dim
+            spans[j].style.opacity = '0.25';
           }
-        });
-      });
+        }
+      }
+
+      requestAnimationFrame(updateSpotlight);
     }
 
-    updateSpotlight();
-    window.addEventListener('scroll', updateSpotlight, { passive: true });
-    window.addEventListener('resize', updateSpotlight, { passive: true });
+    requestAnimationFrame(updateSpotlight);
   }
 
   /* ─────────────────────────────────────────────
