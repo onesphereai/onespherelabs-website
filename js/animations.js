@@ -40,4 +40,14 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }, { passive: true });
   }
+
+  // Floating particles in hero
+  var heroEl = document.querySelector('.hero');
+  if (heroEl && !prefersReducedMotion) {
+    for (var i = 0; i < 20; i++) {
+      var particle = document.createElement('div');
+      particle.style.cssText = 'position:absolute;width:' + (Math.random() * 3 + 1) + 'px;height:' + (Math.random() * 3 + 1) + 'px;background:rgba(150,190,255,' + (Math.random() * 0.4 + 0.1) + ');border-radius:50%;left:' + (Math.random() * 100) + '%;top:' + (Math.random() * 100) + '%;z-index:2;pointer-events:none;animation:floatUp ' + (Math.random() * 8 + 6) + 's linear infinite;animation-delay:' + (Math.random() * 8) + 's;';
+      heroEl.appendChild(particle);
+    }
+  }
 });

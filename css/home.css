@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   padding: var(--space-24) 0 var(--space-16);
-  background-color: var(--bg);
+  background-color: #090A0C;
   position: relative;
   overflow: hidden;
 }
@@ -14,7 +14,7 @@
   margin: 0 auto;
   padding: 0 var(--space-6);
   position: relative;
-  z-index: 1;
+  z-index: 10;
 }
 
 .hero__eyebrow {
