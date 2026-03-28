@@ -10,22 +10,33 @@
    as their parent element scrolls into view.
 ───────────────────────────────────────────── */
 
+/* Spotlight elements must be visible — override parent animate-on-scroll opacity compositing */
+.animate-on-scroll:has([data-word-spotlight]) {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+[data-word-spotlight].animate-on-scroll {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
 /**
  * Default state: word is dim.
- * Transition uses the site's cinematic easing token.
+ * Transition uses the site's cinematic easing token with a fallback value.
  * Duration is deliberately long (500ms) so the progression
  * feels like light sweeping across text, not a jump.
  */
 .word-dim {
-  opacity: 0.2 !important;
-  color: var(--text-primary) !important;
-  transition: opacity 500ms var(--ease-out);
+  opacity: 0.25 !important;
+  transition: opacity 500ms var(--ease-out, cubic-bezier(0.16, 1, 0.3, 1));
   display: inline;
 }
 
 .word-lit {
   opacity: 1 !important;
-  color: var(--text-primary) !important;
 }
 
 /* Ensure spotlight parent elements are visible (override animate-on-scroll) */

@@ -78,35 +78,21 @@
     return wordSpans;
   }
 
-  /**
-   * Build a threshold array with numSteps evenly-spaced values from 0 to 1.
-   * numSteps = 21 gives [0, 0.05, 0.10, ... 1.0].
-   */
-  function buildThresholds(numSteps) {
-    var arr = [];
-    for (var i = 0; i <= numSteps; i++) {
-      arr.push(i / numSteps);
-    }
-    return arr;
-  }
-
   function initWordSpotlight() {
     var targets = document.querySelectorAll('[data-word-spotlight]');
     if (!targets.length) return;
 
-    // prefers-reduced-motion: illuminate all words immediately, skip observer
+    // prefers-reduced-motion: illuminate all words immediately, skip scroll
     if (reducedMotion) {
       targets.forEach(function (el) {
         if (hasChildElements(el)) return;
         var spans = splitIntoWordSpans(el);
-        spans.forEach(function (s) {
-          s.classList.add('word-lit');
-        });
+        spans.forEach(function (s) { s.classList.add('word-lit'); });
       });
       return;
     }
 
-    // Map from element -> its word spans, maintained for observer callbacks
+    // Map from element -> its word spans
     var elementWordMap = new Map();
 
     targets.forEach(function (el) {
@@ -121,34 +107,21 @@
 
     if (!elementWordMap.size) return;
 
-    var thresholds = buildThresholds(20); // 21 steps → 0, 0.05 … 1.0
+    function updateSpotlight() {
+      var vh = window.innerHeight;
 
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        var spans = elementWordMap.get(entry.target);
-        if (!spans || !spans.length) return;
+      elementWordMap.forEach(function (spans, el) {
+        var rect = el.getBoundingClientRect();
 
-        var ratio = entry.intersectionRatio;
+        // Progress: 0 when element top reaches bottom of viewport
+        //           1 when element bottom reaches top of viewport
+        var elementHeight = rect.height || 1;
+        var travelDistance = vh + elementHeight;
+        var distanceTravelled = vh - rect.top;
+        var progress = Math.min(1, Math.max(0, distanceTravelled / travelDistance));
 
-        if (!entry.isIntersecting) {
-          // Element has fully left the viewport — dim all words so the
-          // animation replays when it re-enters from below.
-          // But only dim if the element is BELOW the viewport (not already
-          // scrolled past above) to avoid a flash on upward scroll.
-          var rect = entry.boundingClientRect;
-          if (rect.top > 0) {
-            // Element is below viewport — reset so it replays on re-entry
-            spans.forEach(function (s) {
-              s.classList.remove('word-lit');
-            });
-          }
-          // If above viewport (already read), leave words lit.
-          return;
-        }
-
-        // Determine how many words to illuminate based on intersection ratio
         var total = spans.length;
-        var litCount = Math.round(ratio * total);
+        var litCount = Math.round(progress * total);
 
         spans.forEach(function (s, idx) {
           if (idx < litCount) {
@@ -158,15 +131,11 @@
           }
         });
       });
-    }, {
-      threshold: thresholds,
-      // No rootMargin — we want pixel-accurate intersection relative to viewport
-      rootMargin: '0px'
-    });
+    }
 
-    elementWordMap.forEach(function (_, el) {
-      observer.observe(el);
-    });
+    updateSpotlight();
+    window.addEventListener('scroll', updateSpotlight, { passive: true });
+    window.addEventListener('resize', updateSpotlight, { passive: true });
   }
 
   /* ─────────────────────────────────────────────
