@@ -28,17 +28,19 @@
     parts.push({ y: Math.random(), sp: Math.random() * 0.004 + 0.001, sz: Math.random() * 4 + 1.5, br: Math.random() * 0.5 + 0.2, ox: (Math.random() - 0.5) * 50 });
   }
 
-  // 40 vapor clouds — mix of huge/large/medium/small across entire hero
+  // 60 vapor clouds — prominent, spread across ENTIRE hero
   var clouds = [];
   var cloudDefs = [
-    // 6 HUGE (400-600px)
-    {count:6, rMin:400, rMax:600, opMin:0.06, opMax:0.14, spdMul:0.15},
-    // 10 large (200-400px)
-    {count:10, rMin:200, rMax:400, opMin:0.05, opMax:0.14, spdMul:0.3},
-    // 12 medium (100-200px)
-    {count:12, rMin:100, rMax:200, opMin:0.06, opMax:0.16, spdMul:0.4},
-    // 12 small (40-100px)
-    {count:12, rMin:40, rMax:100, opMin:0.08, opMax:0.2, spdMul:0.6}
+    // 8 MASSIVE (600-900px) — huge fog banks covering wide areas
+    {count:8, rMin:600, rMax:900, opMin:0.1, opMax:0.22, spdMul:0.1},
+    // 10 HUGE (350-600px)
+    {count:10, rMin:350, rMax:600, opMin:0.1, opMax:0.2, spdMul:0.18},
+    // 14 large (180-350px)
+    {count:14, rMin:180, rMax:350, opMin:0.1, opMax:0.22, spdMul:0.3},
+    // 14 medium (80-180px) — visible texture clouds
+    {count:14, rMin:80, rMax:180, opMin:0.12, opMax:0.25, spdMul:0.45},
+    // 14 small (30-80px) — fine detail mist
+    {count:14, rMin:30, rMax:80, opMin:0.15, opMax:0.3, spdMul:0.6}
   ];
   cloudDefs.forEach(function(def) {
     for (var n = 0; n < def.count; n++) {
@@ -84,9 +86,10 @@
       var cop = cl.op * (0.85 + Math.sin(time * 0.25 + cl.ph) * 0.15);
 
       var cg = ctx.createRadialGradient(cpx, cpy, 0, cpx, cpy, cr);
-      cg.addColorStop(0, 'rgba(' + cl.g + ',' + cl.b + ',210,' + cop + ')');
-      cg.addColorStop(0.3, 'rgba(' + Math.floor(cl.g * 0.7) + ',' + Math.floor(cl.b * 0.8) + ',180,' + (cop * 0.55) + ')');
-      cg.addColorStop(0.6, 'rgba(' + Math.floor(cl.g * 0.4) + ',' + Math.floor(cl.b * 0.5) + ',140,' + (cop * 0.2) + ')');
+      cg.addColorStop(0, 'rgba(' + cl.g + ',' + cl.b + ',220,' + cop + ')');
+      cg.addColorStop(0.25, 'rgba(' + Math.floor(cl.g * 0.8) + ',' + Math.floor(cl.b * 0.85) + ',200,' + (cop * 0.7) + ')');
+      cg.addColorStop(0.5, 'rgba(' + Math.floor(cl.g * 0.5) + ',' + Math.floor(cl.b * 0.6) + ',160,' + (cop * 0.35) + ')');
+      cg.addColorStop(0.75, 'rgba(' + Math.floor(cl.g * 0.3) + ',' + Math.floor(cl.b * 0.35) + ',120,' + (cop * 0.12) + ')');
       cg.addColorStop(1, 'rgba(0,0,0,0)');
       ctx.fillStyle = cg;
       ctx.fillRect(cpx - cr, cpy - cr, cr * 2, cr * 2);
