@@ -1,0 +1,200 @@
+/* =========================================
+   Cinematic Effects — Glows, Glass, Beams
+   ========================================= */
+
+/* Glow blobs — ambient light effect */
+.glow-blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(80px);
+}
+
+.glow-blob--primary {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, var(--glow-primary) 0%, transparent 70%);
+}
+
+.glow-blob--accent {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, var(--glow-accent) 0%, transparent 70%);
+}
+
+.glow-blob--subtle {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, transparent 70%);
+}
+
+/* Light beam — vertical hero effect */
+.light-beam {
+  position: relative;
+  overflow: hidden;
+}
+
+.light-beam::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 500px;
+  background: linear-gradient(to bottom, transparent, var(--glow-primary), transparent);
+  filter: blur(40px);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.light-beam::after {
+  content: '';
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 400px;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.3), transparent);
+  filter: blur(1px);
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Glass card */
+.glass-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--card-radius-lg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition:
+    border-color var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.glass-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 0 30px rgba(99, 102, 241, 0.1);
+}
+
+/* CTA button glow */
+.btn-glow {
+  box-shadow: 0 0 15px var(--glow-accent), 0 0 45px rgba(6, 182, 212, 0.15);
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 25px var(--glow-accent), 0 0 60px rgba(6, 182, 212, 0.25);
+}
+
+/* Gradient text — extended variants */
+.gradient-text--cool {
+  background: linear-gradient(135deg, #818CF8, #06B6D4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text--warm {
+  background: linear-gradient(135deg, #F472B6, #FB923C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Bento grid */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--grid-gap);
+}
+
+.bento-grid__item--wide { grid-column: span 7; }
+.bento-grid__item--narrow { grid-column: span 5; }
+.bento-grid__item--half { grid-column: span 6; }
+.bento-grid__item--full { grid-column: span 12; }
+.bento-grid__item--third { grid-column: span 4; }
+
+/* Section glow — radial gradient behind content */
+.section-glow {
+  position: relative;
+}
+
+.section-glow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 400px;
+  background: radial-gradient(ellipse, var(--glow-primary) 0%, transparent 70%);
+  filter: blur(100px);
+  opacity: 0.3;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.section-glow > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Border glow on cards */
+.card-glow {
+  transition: box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.card-glow:hover {
+  box-shadow:
+    0 0 20px var(--glow-primary),
+    0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive — reduce effects on mobile */
+@media (max-width: 768px) {
+  .glow-blob {
+    filter: blur(40px);
+    opacity: 0.5;
+  }
+
+  .glow-blob--primary { width: 300px; height: 300px; }
+  .glow-blob--accent { width: 200px; height: 200px; }
+  .glow-blob--subtle { display: none; }
+
+  .light-beam::before { filter: blur(30px); opacity: 0.3; }
+  .light-beam::after { display: none; }
+
+  .section-glow::before {
+    width: 300px;
+    height: 200px;
+    filter: blur(60px);
+    opacity: 0.2;
+  }
+
+  .bento-grid__item--wide,
+  .bento-grid__item--narrow,
+  .bento-grid__item--half,
+  .bento-grid__item--third {
+    grid-column: span 12;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .glow-blob,
+  .light-beam::before,
+  .light-beam::after,
+  .section-glow::before {
+    animation: none;
+  }
+
+  .glass-card,
+  .card-glow {
+    transition: none;
+  }
+}
