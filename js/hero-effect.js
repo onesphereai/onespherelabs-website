@@ -4,7 +4,7 @@
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     container.style.background =
-      'radial-gradient(ellipse at 55% 85%, rgba(60,100,200,0.3) 0%, transparent 50%)';
+      'radial-gradient(ellipse at 55% 80%, rgba(60,100,200,0.4) 0%, transparent 50%)';
     return;
   }
 
@@ -17,30 +17,32 @@
     w = canvas.width = container.offsetWidth;
     h = canvas.height = container.offsetHeight;
     cx = w * 0.55;
-    cy = h * 0.88;
+    cy = h * 0.82;
   }
   resize();
   window.addEventListener('resize', resize);
 
-  // Particles flowing down the beam
+  // Particles flowing down beam
   var particles = [];
-  for (var i = 0; i < 60; i++) {
+  for (var i = 0; i < 80; i++) {
     particles.push({
-      x: 0, y: Math.random(), speed: Math.random() * 0.003 + 0.001,
-      size: Math.random() * 3 + 1, brightness: Math.random() * 0.5 + 0.3,
-      offset: (Math.random() - 0.5) * 30
+      y: Math.random(), speed: Math.random() * 0.004 + 0.001,
+      size: Math.random() * 4 + 1.5, brightness: Math.random() * 0.6 + 0.2,
+      offset: (Math.random() - 0.5) * 40
     });
   }
 
-  // Fog clouds drifting
-  var fogClouds = [];
-  for (var f = 0; f < 8; f++) {
-    fogClouds.push({
-      x: Math.random(), y: Math.random() * 0.8 + 0.1,
-      radius: Math.random() * 200 + 100,
-      dx: (Math.random() - 0.5) * 0.0003,
-      dy: (Math.random() - 0.5) * 0.0002,
-      opacity: Math.random() * 0.08 + 0.03
+  // Large vapor clouds — VISIBLE fog masses
+  var vapors = [];
+  for (var v = 0; v < 12; v++) {
+    vapors.push({
+      x: Math.random() * 0.6 + 0.25,
+      y: Math.random() * 0.7 + 0.15,
+      radius: Math.random() * 180 + 80,
+      dx: (Math.random() - 0.5) * 0.0004,
+      dy: -Math.random() * 0.0003 - 0.0001,
+      opacity: Math.random() * 0.12 + 0.05,
+      phase: Math.random() * Math.PI * 2
     });
   }
 
@@ -48,197 +50,206 @@
     time += 0.016;
     ctx.clearRect(0, 0, w, h);
 
-    // ── ATMOSPHERIC FOG — drifting clouds ──
-    for (var fi = 0; fi < fogClouds.length; fi++) {
-      var fc = fogClouds[fi];
-      fc.x += fc.dx;
-      fc.y += fc.dy;
-      if (fc.x < -0.1) fc.x = 1.1;
-      if (fc.x > 1.1) fc.x = -0.1;
-      if (fc.y < 0.05) fc.dy = Math.abs(fc.dy);
-      if (fc.y > 0.9) fc.dy = -Math.abs(fc.dy);
+    // ── LARGE AMBIENT GLOW — makes the scene less dark ──
+    var ambient = ctx.createRadialGradient(cx, cy * 0.6, 0, cx, cy * 0.6, w * 0.6);
+    ambient.addColorStop(0, 'rgba(25,50,120,0.2)');
+    ambient.addColorStop(0.4, 'rgba(15,30,80,0.1)');
+    ambient.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = ambient;
+    ctx.fillRect(0, 0, w, h);
 
-      var pulse = 1 + Math.sin(time * 0.5 + fi) * 0.15;
-      var fog = ctx.createRadialGradient(
-        fc.x * w, fc.y * h, 0,
-        fc.x * w, fc.y * h, fc.radius * pulse
-      );
-      fog.addColorStop(0, 'rgba(30,60,150,' + (fc.opacity * pulse) + ')');
-      fog.addColorStop(0.5, 'rgba(20,40,120,' + (fc.opacity * 0.5 * pulse) + ')');
-      fog.addColorStop(1, 'rgba(0,0,0,0)');
-      ctx.fillStyle = fog;
-      ctx.fillRect(0, 0, w, h);
+    // ── VAPOR CLOUDS — big, visible, drifting fog ──
+    for (var vi = 0; vi < vapors.length; vi++) {
+      var vc = vapors[vi];
+      vc.x += vc.dx;
+      vc.y += vc.dy;
+      if (vc.y < -0.1) { vc.y = 0.9; vc.x = Math.random() * 0.6 + 0.25; }
+      if (vc.x < 0.1) vc.dx = Math.abs(vc.dx);
+      if (vc.x > 0.9) vc.dx = -Math.abs(vc.dx);
+
+      var pulse = 1 + Math.sin(time * 0.4 + vc.phase) * 0.2;
+      var r = vc.radius * pulse;
+      var vx = vc.x * w;
+      var vy = vc.y * h;
+      var op = vc.opacity * (0.8 + Math.sin(time * 0.3 + vc.phase) * 0.2);
+
+      var vg = ctx.createRadialGradient(vx, vy, 0, vx, vy, r);
+      vg.addColorStop(0, 'rgba(80,120,200,' + op + ')');
+      vg.addColorStop(0.3, 'rgba(50,80,160,' + (op * 0.6) + ')');
+      vg.addColorStop(0.6, 'rgba(30,50,120,' + (op * 0.3) + ')');
+      vg.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = vg;
+      ctx.fillRect(vx - r, vy - r, r * 2, r * 2);
     }
 
-    // ── BEAM — funnel converging to impact, with shimmer ──
-    var shimmer = 1 + Math.sin(time * 2) * 0.08;
-    var shimmer2 = 1 + Math.sin(time * 3.7) * 0.05;
+    // ── BEAM FUNNEL — wide at top, converging to sphere ──
+    var s1 = 1 + Math.sin(time * 2) * 0.06;
+    var s2 = 1 + Math.sin(time * 3.5) * 0.04;
 
-    // Outermost glow funnel
+    // Outermost glow — WIDER and BRIGHTER
     ctx.beginPath();
-    ctx.moveTo(cx - 140 * shimmer, 0);
-    ctx.lineTo(cx + 140 * shimmer, 0);
-    ctx.lineTo(cx + 4, cy);
-    ctx.lineTo(cx - 4, cy);
+    ctx.moveTo(cx - 180 * s1, 0);
+    ctx.lineTo(cx + 180 * s1, 0);
+    ctx.lineTo(cx + 6, cy);
+    ctx.lineTo(cx - 6, cy);
     ctx.closePath();
-    var funnelOuter = ctx.createLinearGradient(0, 0, 0, cy);
-    funnelOuter.addColorStop(0, 'rgba(40,70,180,0)');
-    funnelOuter.addColorStop(0.05, 'rgba(50,80,200,0.05)');
-    funnelOuter.addColorStop(0.3, 'rgba(60,100,220,0.08)');
-    funnelOuter.addColorStop(0.7, 'rgba(70,110,230,0.1)');
-    funnelOuter.addColorStop(1, 'rgba(80,120,240,0.06)');
-    ctx.fillStyle = funnelOuter;
+    var fo = ctx.createLinearGradient(0, 0, 0, cy);
+    fo.addColorStop(0, 'rgba(40,70,180,0)');
+    fo.addColorStop(0.05, 'rgba(50,80,200,0.08)');
+    fo.addColorStop(0.3, 'rgba(60,100,220,0.14)');
+    fo.addColorStop(0.6, 'rgba(70,120,240,0.16)');
+    fo.addColorStop(1, 'rgba(80,130,250,0.1)');
+    ctx.fillStyle = fo;
     ctx.fill();
 
     // Medium funnel
     ctx.beginPath();
-    ctx.moveTo(cx - 60 * shimmer2, 0);
-    ctx.lineTo(cx + 60 * shimmer2, 0);
-    ctx.lineTo(cx + 2, cy);
-    ctx.lineTo(cx - 2, cy);
+    ctx.moveTo(cx - 70 * s2, 0);
+    ctx.lineTo(cx + 70 * s2, 0);
+    ctx.lineTo(cx + 3, cy);
+    ctx.lineTo(cx - 3, cy);
     ctx.closePath();
-    var funnelMed = ctx.createLinearGradient(0, 0, 0, cy);
-    funnelMed.addColorStop(0, 'rgba(120,160,255,0)');
-    funnelMed.addColorStop(0.08, 'rgba(140,180,255,0.1)');
-    funnelMed.addColorStop(0.3, 'rgba(160,200,255,0.2)');
-    funnelMed.addColorStop(0.6, 'rgba(180,210,255,0.25)');
-    funnelMed.addColorStop(1, 'rgba(200,220,255,0.15)');
-    ctx.fillStyle = funnelMed;
+    var fm = ctx.createLinearGradient(0, 0, 0, cy);
+    fm.addColorStop(0, 'rgba(120,160,255,0)');
+    fm.addColorStop(0.06, 'rgba(140,180,255,0.15)');
+    fm.addColorStop(0.3, 'rgba(170,200,255,0.25)');
+    fm.addColorStop(0.6, 'rgba(190,215,255,0.3)');
+    fm.addColorStop(1, 'rgba(200,220,255,0.2)');
+    ctx.fillStyle = fm;
     ctx.fill();
 
     // Inner bright funnel
     ctx.beginPath();
-    ctx.moveTo(cx - 18 * shimmer, 0);
-    ctx.lineTo(cx + 18 * shimmer, 0);
-    ctx.lineTo(cx + 1, cy);
-    ctx.lineTo(cx - 1, cy);
+    ctx.moveTo(cx - 20 * s1, 0);
+    ctx.lineTo(cx + 20 * s1, 0);
+    ctx.lineTo(cx + 1.5, cy);
+    ctx.lineTo(cx - 1.5, cy);
     ctx.closePath();
-    var funnelInner = ctx.createLinearGradient(0, 0, 0, cy);
-    funnelInner.addColorStop(0, 'rgba(200,220,255,0)');
-    funnelInner.addColorStop(0.04, 'rgba(220,235,255,0.4)');
-    funnelInner.addColorStop(0.2, 'rgba(240,245,255,0.7)');
-    funnelInner.addColorStop(0.5, 'rgba(255,255,255,0.85)');
-    funnelInner.addColorStop(1, 'rgba(255,255,255,0.6)');
-    ctx.fillStyle = funnelInner;
+    var fi = ctx.createLinearGradient(0, 0, 0, cy);
+    fi.addColorStop(0, 'rgba(200,220,255,0)');
+    fi.addColorStop(0.03, 'rgba(230,240,255,0.5)');
+    fi.addColorStop(0.2, 'rgba(245,250,255,0.75)');
+    fi.addColorStop(0.5, 'rgba(255,255,255,0.9)');
+    fi.addColorStop(1, 'rgba(255,255,255,0.7)');
+    ctx.fillStyle = fi;
     ctx.fill();
 
-    // Core bright line with subtle flicker
-    var coreAlpha = 0.85 + Math.sin(time * 5) * 0.1;
+    // Core line
+    var ca = 0.9 + Math.sin(time * 5) * 0.08;
     ctx.beginPath();
     ctx.moveTo(cx, 0);
     ctx.lineTo(cx, cy);
-    ctx.strokeStyle = 'rgba(255,255,255,' + coreAlpha + ')';
+    ctx.strokeStyle = 'rgba(255,255,255,' + ca + ')';
     ctx.lineWidth = 2.5;
-    ctx.shadowColor = 'rgba(200,220,255,0.7)';
-    ctx.shadowBlur = 10;
+    ctx.shadowColor = 'rgba(200,220,255,0.6)';
+    ctx.shadowBlur = 8;
     ctx.stroke();
     ctx.shadowBlur = 0;
 
-    // ── PARTICLES — flowing down the beam ──
+    // ── PARTICLES flowing down beam ──
     for (var pi = 0; pi < particles.length; pi++) {
       var p = particles[pi];
       p.y += p.speed;
-      if (p.y > 1) { p.y = 0; p.offset = (Math.random() - 0.5) * 30; p.brightness = Math.random() * 0.5 + 0.3; }
-
-      // Particle position follows the funnel shape
-      var progress = p.y;
-      var funnelWidth = (1 - progress) * 60;
-      var px = cx + p.offset * (funnelWidth / 60);
-      var py = progress * cy;
-
-      var particleAlpha = p.brightness * (0.7 + Math.sin(time * 3 + pi) * 0.3);
-      if (progress < 0.05) particleAlpha *= progress / 0.05;
-      if (progress > 0.9) particleAlpha *= (1 - progress) / 0.1;
-
+      if (p.y > 1) { p.y = -0.02; p.offset = (Math.random() - 0.5) * 40; }
+      var prog = p.y;
+      var fw = (1 - prog) * 70;
+      var px = cx + p.offset * (fw / 70);
+      var py = prog * cy;
+      var pa = p.brightness * (0.6 + Math.sin(time * 3 + pi) * 0.3);
+      if (prog < 0.04) pa *= prog / 0.04;
+      if (prog > 0.92) pa *= (1 - prog) / 0.08;
       ctx.beginPath();
       ctx.arc(px, py, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(200,220,255,' + particleAlpha + ')';
-      ctx.shadowColor = 'rgba(150,190,255,' + (particleAlpha * 0.8) + ')';
-      ctx.shadowBlur = p.size * 3;
+      ctx.fillStyle = 'rgba(200,225,255,' + pa + ')';
+      ctx.shadowColor = 'rgba(150,190,255,' + (pa * 0.6) + ')';
+      ctx.shadowBlur = p.size * 4;
       ctx.fill();
       ctx.shadowBlur = 0;
     }
 
-    // ── IMPACT — bright convergence point ──
-    var impactPulse = 1 + Math.sin(time * 1.5) * 0.15;
-    var impactR = 35 * impactPulse;
+    // ── BIG IMPACT SPHERE — large bright glow ──
+    var ip = 1 + Math.sin(time * 1.5) * 0.12;
 
-    // Wide glow
-    var impactWide = ctx.createRadialGradient(cx, cy, 0, cx, cy, 140 * impactPulse);
-    impactWide.addColorStop(0, 'rgba(200,210,255,0.25)');
-    impactWide.addColorStop(0.3, 'rgba(150,170,255,0.12)');
-    impactWide.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.fillStyle = impactWide;
+    // Outermost sphere glow — BIG (250px radius)
+    var ig3 = ctx.createRadialGradient(cx, cy, 0, cx, cy, 250 * ip);
+    ig3.addColorStop(0, 'rgba(150,180,255,0.2)');
+    ig3.addColorStop(0.3, 'rgba(100,140,240,0.1)');
+    ig3.addColorStop(0.6, 'rgba(60,90,200,0.05)');
+    ig3.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = ig3;
     ctx.beginPath();
-    ctx.arc(cx, cy, 140 * impactPulse, 0, Math.PI * 2);
+    ctx.arc(cx, cy, 250 * ip, 0, Math.PI * 2);
     ctx.fill();
 
-    // Hot center
-    var impact = ctx.createRadialGradient(cx, cy, 0, cx, cy, impactR);
-    impact.addColorStop(0, 'rgba(255,255,255,0.95)');
-    impact.addColorStop(0.2, 'rgba(255,240,220,0.7)');
-    impact.addColorStop(0.5, 'rgba(180,200,255,0.3)');
-    impact.addColorStop(1, 'rgba(100,140,255,0)');
-    ctx.fillStyle = impact;
+    // Medium sphere glow (120px)
+    var ig2 = ctx.createRadialGradient(cx, cy, 0, cx, cy, 120 * ip);
+    ig2.addColorStop(0, 'rgba(200,215,255,0.35)');
+    ig2.addColorStop(0.3, 'rgba(160,185,255,0.2)');
+    ig2.addColorStop(0.7, 'rgba(120,150,240,0.08)');
+    ig2.addColorStop(1, 'rgba(0,0,0,0)');
+    ctx.fillStyle = ig2;
     ctx.beginPath();
-    ctx.arc(cx, cy, impactR, 0, Math.PI * 2);
+    ctx.arc(cx, cy, 120 * ip, 0, Math.PI * 2);
     ctx.fill();
 
-    // ── LIGHT SPREAD — V shape from impact along bottom ──
-    var spreadAlpha = 0.15 + Math.sin(time * 0.8) * 0.05;
-
-    // Left spread
+    // Hot bright center (60px)
+    var ig1 = ctx.createRadialGradient(cx, cy, 0, cx, cy, 60 * ip);
+    ig1.addColorStop(0, 'rgba(255,255,255,0.95)');
+    ig1.addColorStop(0.15, 'rgba(255,245,230,0.7)');
+    ig1.addColorStop(0.4, 'rgba(220,200,255,0.35)');
+    ig1.addColorStop(0.7, 'rgba(160,170,255,0.15)');
+    ig1.addColorStop(1, 'rgba(100,130,255,0)');
+    ctx.fillStyle = ig1;
     ctx.beginPath();
-    ctx.moveTo(cx, cy);
-    ctx.lineTo(cx - w * 0.5, h + 20);
-    ctx.lineTo(cx - w * 0.3, h + 20);
+    ctx.arc(cx, cy, 60 * ip, 0, Math.PI * 2);
+    ctx.fill();
+
+    // ── WIDE V-SPREAD from impact — MUCH WIDER ──
+    var sa = 0.2 + Math.sin(time * 0.8) * 0.05;
+
+    // Left wide spread
+    ctx.beginPath();
+    ctx.moveTo(cx - 10, cy);
+    ctx.lineTo(0, h + 30);
+    ctx.lineTo(cx * 0.4, h + 30);
     ctx.closePath();
-    var ls = ctx.createLinearGradient(cx, cy, cx - w * 0.4, h);
-    ls.addColorStop(0, 'rgba(160,180,255,' + spreadAlpha + ')');
-    ls.addColorStop(0.4, 'rgba(100,130,240,' + (spreadAlpha * 0.5) + ')');
+    var ls = ctx.createLinearGradient(cx, cy, 0, h);
+    ls.addColorStop(0, 'rgba(140,170,255,' + sa + ')');
+    ls.addColorStop(0.3, 'rgba(100,140,240,' + (sa * 0.5) + ')');
+    ls.addColorStop(0.6, 'rgba(60,90,200,' + (sa * 0.2) + ')');
     ls.addColorStop(1, 'rgba(0,0,0,0)');
     ctx.fillStyle = ls;
     ctx.fill();
 
-    // Right spread
+    // Right wide spread
     ctx.beginPath();
-    ctx.moveTo(cx, cy);
-    ctx.lineTo(cx + w * 0.5, h + 20);
-    ctx.lineTo(cx + w * 0.3, h + 20);
+    ctx.moveTo(cx + 10, cy);
+    ctx.lineTo(w, h + 30);
+    ctx.lineTo(cx + (w - cx) * 0.6, h + 30);
     ctx.closePath();
-    var rs = ctx.createLinearGradient(cx, cy, cx + w * 0.4, h);
-    rs.addColorStop(0, 'rgba(160,180,255,' + spreadAlpha + ')');
-    rs.addColorStop(0.4, 'rgba(100,130,240,' + (spreadAlpha * 0.5) + ')');
+    var rs = ctx.createLinearGradient(cx, cy, w, h);
+    rs.addColorStop(0, 'rgba(140,170,255,' + sa + ')');
+    rs.addColorStop(0.3, 'rgba(100,140,240,' + (sa * 0.5) + ')');
+    rs.addColorStop(0.6, 'rgba(60,90,200,' + (sa * 0.2) + ')');
     rs.addColorStop(1, 'rgba(0,0,0,0)');
     ctx.fillStyle = rs;
     ctx.fill();
 
-    // Wide diffuse spread
-    ctx.beginPath();
-    ctx.moveTo(cx, cy);
-    ctx.lineTo(0, h + 50);
-    ctx.lineTo(w, h + 50);
-    ctx.closePath();
-    var wv = ctx.createLinearGradient(cx, cy, cx, h);
-    wv.addColorStop(0, 'rgba(80,100,200,0.06)');
-    wv.addColorStop(0.5, 'rgba(40,60,140,0.03)');
-    wv.addColorStop(1, 'rgba(0,0,0,0)');
-    ctx.fillStyle = wv;
-    ctx.fill();
+    // Warm horizontal streak — wider
+    var sk = 0.35 + Math.sin(time * 1.2) * 0.1;
+    var hw = ctx.createLinearGradient(cx - w * 0.4, 0, cx + w * 0.4, 0);
+    hw.addColorStop(0, 'rgba(255,180,80,0)');
+    hw.addColorStop(0.2, 'rgba(255,200,120,' + (sk * 0.3) + ')');
+    hw.addColorStop(0.5, 'rgba(255,240,200,' + sk + ')');
+    hw.addColorStop(0.8, 'rgba(255,200,120,' + (sk * 0.3) + ')');
+    hw.addColorStop(1, 'rgba(255,180,80,0)');
+    ctx.fillStyle = hw;
+    ctx.fillRect(cx - w * 0.4, cy - 3, w * 0.8, 6);
 
-    // Warm horizontal streak
-    var streakAlpha = 0.3 + Math.sin(time * 1.2) * 0.1;
-    var horizW = ctx.createLinearGradient(cx - 350, 0, cx + 350, 0);
-    horizW.addColorStop(0, 'rgba(255,180,80,0)');
-    horizW.addColorStop(0.25, 'rgba(255,200,120,' + (streakAlpha * 0.4) + ')');
-    horizW.addColorStop(0.5, 'rgba(255,240,200,' + streakAlpha + ')');
-    horizW.addColorStop(0.75, 'rgba(255,200,120,' + (streakAlpha * 0.4) + ')');
-    horizW.addColorStop(1, 'rgba(255,180,80,0)');
-    ctx.fillStyle = horizW;
-    ctx.fillRect(cx - 350, cy - 2, 700, 4);
-    ctx.shadowColor = 'rgba(255,200,120,0.25)';
-    ctx.shadowBlur = 12;
-    ctx.fillRect(cx - 250, cy - 1, 500, 2);
+    // Warm streak glow
+    ctx.shadowColor = 'rgba(255,200,120,0.3)';
+    ctx.shadowBlur = 15;
+    ctx.fillRect(cx - w * 0.3, cy - 1.5, w * 0.6, 3);
     ctx.shadowBlur = 0;
 
     requestAnimationFrame(draw);
