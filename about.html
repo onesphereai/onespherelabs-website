@@ -40,64 +40,243 @@
     </nav>
 
     <main id="main">
-      <section class="about-hero">
-        <div class="about-hero__container">
-          <span class="about-hero__eyebrow animate-on-scroll">About Us</span>
-          <h1 class="about-hero__title animate-on-scroll">We build AI that solves real problems</h1>
-          <p class="about-hero__description" data-word-spotlight>OneSphere Labs is an Australian AI product studio. We build specific products for specific problems in healthcare, compliance, parenting, and pet care.</p>
-        </div>
-      </section>
-
-      <section class="mission">
-        <div class="mission__container">
-          <div class="mission__grid">
-            <div class="mission__content">
-              <h2 class="animate-on-scroll">Our Approach</h2>
-              <p data-word-spotlight>Every product we build starts with a real problem we've seen firsthand. Australian doctors drowning in paperwork. Compliance teams dreading audits. Parents struggling without support. Pet owners missing signals their animals are sending.</p>
-              <p data-word-spotlight>We build vertical AI &mdash; technology designed for a specific industry, a specific workflow, and a specific regulatory context. Not horizontal platforms that try to do everything for everyone.</p>
-              <p data-word-spotlight>Founded in 2024 and based in Australia, we operate with Australian Privacy Principles (APP) compliance, Sydney-based data residency, and a deep understanding of the regulatory frameworks our customers work within.</p>
+        <!-- ==============================
+             1. CINEMATIC HERO
+             ============================== -->
+        <section class="hero">
+            <canvas id="heroCanvas" class="hero-canvas"></canvas>
+            <div class="hero-content">
+                <div class="hero-badge">About Us</div>
+                <h1>We build AI that solves <span class="accent">real problems</span></h1>
+                <p class="hero-subtitle">OneSphere Labs is an Australian AI product studio. We build specific products for specific problems in healthcare, compliance, parenting, and pet care.</p>
             </div>
-            <div class="mission__values animate-on-scroll" data-delay="100">
-              <div class="mission__value">
-                <div class="mission__value-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg></div>
-                <div><h4>Privacy First</h4><p>APP compliant. Sydney data residency. On-device processing where possible. Your data is never used for AI training.</p></div>
-              </div>
-              <div class="mission__value">
-                <div class="mission__value-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></div>
-                <div><h4>Regulation Aware</h4><p>Built for Australian regulatory frameworks &mdash; RACGP, TGA, PBS, ASQA, NDIS, aged care standards.</p></div>
-              </div>
-              <div class="mission__value">
-                <div class="mission__value-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg></div>
-                <div><h4>Patent-Pending Innovation</h4><p>Our dual-camera, on-device AI analysis technology (Attune) has a patent filed &mdash; real invention, not just an API wrapper.</p></div>
-              </div>
+        </section>
+
+        <!-- ==============================
+             2. SCROLL-LINKED NARRATIVE
+             ============================== -->
+        <section class="spotlight-section">
+            <div class="spotlight-container">
+                <p class="spotlight-text" id="spotlightText">
+                    Founded by a Stanford-trained technologist and a 25-year enterprise transformation veteran, OneSphere Labs combines deep architectural rigor with lived operator experience. We do not just guess what industries need. We run the clinics and operations that face these challenges daily. By leveraging advanced AI frameworks, we build production-ready platforms in weeks, not months or years.
+                </p>
             </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="about-stats">
-        <div class="about-stats__container">
-          <div class="about-stats__grid">
-            <div class="about-stat animate-on-scroll" data-delay="0"><span class="about-stat__number">4</span><span class="about-stat__label">Live Products</span></div>
-            <div class="about-stat animate-on-scroll" data-delay="50"><span class="about-stat__number">Patent</span><span class="about-stat__label">Filed</span></div>
-            <div class="about-stat animate-on-scroll" data-delay="100"><span class="about-stat__number">APP</span><span class="about-stat__label">Compliant</span></div>
-            <div class="about-stat animate-on-scroll" data-delay="150"><span class="about-stat__number">Sydney</span><span class="about-stat__label">Data Residency</span></div>
-            <div class="about-stat animate-on-scroll" data-delay="200"><span class="about-stat__number">2024</span><span class="about-stat__label">Founded</span></div>
-          </div>
-        </div>
-      </section>
+        <!-- ==============================
+             3. FOUNDERS SECTION
+             ============================== -->
+        <section class="founders-section">
+            <h2 class="section-title">Built by Operators, Not Observers</h2>
+            <div class="founders-grid">
+                <!-- Founder 1: Stanford Technologist -->
+                <div class="founder-card" data-glow>
+                    <div class="card-glow"></div>
+                    <div class="card-inner">
+                        <span class="founder-role tech">Co-Founder &amp; CTO</span>
+                        <h3>Stanford-Trained Technologist</h3>
+                        <p style="color:rgba(255,255,255,0.6); font-size:16px; line-height:1.7; margin-bottom:16px;">A Stanford Graduate School of Business alumnus with over a decade of enterprise architecture experience, bringing deep technical rigor to every product we build.</p>
+                        <ul class="credentials">
+                            <li>
+                                <svg class="check" viewBox="0 0 20 20" fill="currentColor" style="color:#60a5fa;"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Stanford University Graduate School of Business
+                            </li>
+                            <li>
+                                <svg class="check" viewBox="0 0 20 20" fill="currentColor" style="color:#60a5fa;"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                10+ years as Enterprise Architect at global technology companies
+                            </li>
+                            <li>
+                                <svg class="check" viewBox="0 0 20 20" fill="currentColor" style="color:#60a5fa;"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Software Architecture for IoT, digital transformation, and AI systems
+                            </li>
+                            <li>
+                                <svg class="check" viewBox="0 0 20 20" fill="currentColor" style="color:#60a5fa;"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Deep expertise in cloud infrastructure and scalable system design
+                            </li>
+                        </ul>
+                    </div>
+                </div>
 
-      <section class="about-products">
-        <div class="about-products__container">
-          <div class="about-products__header animate-on-scroll"><h2>Our Products</h2><p>Four AI platforms, each solving a specific real-world problem.</p></div>
-          <div class="about-products__grid">
-            <a href="/products/maeda-health.html" class="about-product-card animate-on-scroll" data-delay="0"><h3>Maeda Health</h3><p>AI clinical assistant for Australian doctors. Scribe, billing, forms, referrals.</p><span>Learn more &rarr;</span></a>
-            <a href="/products/vigility.html" class="about-product-card animate-on-scroll" data-delay="50"><h3>Vigility</h3><p>Automated compliance for RTOs, NDIS providers, and aged care facilities.</p><span>Learn more &rarr;</span></a>
-            <a href="/products/attune.html" class="about-product-card animate-on-scroll" data-delay="100"><h3>Attune</h3><p>AI parenting coach for neurodivergent children. On-device, patent filed.</p><span>Learn more &rarr;</span></a>
-            <a href="/products/petsense.html" class="about-product-card animate-on-scroll" data-delay="150"><h3>Petsense</h3><p>Real-time pet behaviour analysis for dogs and cats.</p><span>Learn more &rarr;</span></a>
-          </div>
-        </div>
-      </section>
+                <!-- Founder 2: Transformation Veteran -->
+                <div class="founder-card" data-glow>
+                    <div class="card-glow"></div>
+                    <div class="card-inner">
+                        <span class="founder-role ops">Co-Founder &amp; CEO</span>
+                        <h3>Enterprise Transformation Veteran</h3>
+                        <p style="color:rgba(255,255,255,0.6); font-size:16px; line-height:1.7; margin-bottom:16px;">A 25-year digital transformation leader who has delivered multi-million dollar programs at Australia's largest enterprises, and now runs the healthcare clinic that inspired our products.</p>
+                        <ul class="credentials">
+                            <li>
+                                <svg class="check" viewBox="0 0 20 20" fill="currentColor" style="color:#a855f7;"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                25+ years leading digital programs at Adobe, Capgemini, NAB, Allianz
+                            </li>
+                            <li>
+                                <svg class="check" viewBox="0 0 20 20" fill="currentColor" style="color:#a855f7;"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Founder and Director of a live NDIS-registered allied health clinic
+                            </li>
+                            <li>
+                                <svg class="check" viewBox="0 0 20 20" fill="currentColor" style="color:#a855f7;"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Master of Information Systems, Bachelor of Computer Science
+                            </li>
+                            <li>
+                                <svg class="check" viewBox="0 0 20 20" fill="currentColor" style="color:#a855f7;"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                                Builds from lived operator experience, not technology speculation
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==============================
+             4. BENTO GRID: OUR APPROACH
+             ============================== -->
+        <section class="bento-section">
+            <h2 class="section-title">Our Approach</h2>
+            <div class="bento-grid">
+                <!-- Card 1: Privacy First -->
+                <div class="bento-card" data-glow>
+                    <div class="card-glow"></div>
+                    <div class="card-inner">
+                        <div class="icon-circle icon-blue">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+                        </div>
+                        <h3>Privacy First</h3>
+                        <p>APP compliant. Sydney data residency. On-device processing where possible. Your data is never used for AI training.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: Regulation Aware -->
+                <div class="bento-card" data-glow>
+                    <div class="card-glow"></div>
+                    <div class="card-inner">
+                        <div class="icon-circle icon-purple">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z"/></svg>
+                        </div>
+                        <h3>Regulation Aware</h3>
+                        <p>Built for Australian regulatory frameworks: RACGP, TGA, PBS, ASQA, NDIS, and aged care standards.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3: Weeks Not Years -->
+                <div class="bento-card" data-glow>
+                    <div class="card-glow"></div>
+                    <div class="card-inner">
+                        <div class="icon-circle icon-green">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+                        </div>
+                        <h3>Weeks, Not Years</h3>
+                        <p>Our AI-first development approach means we ship production-ready platforms in weeks. No bloated timelines. No endless roadmaps. Real products, real speed.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4: Operator Experience -->
+                <div class="bento-card" data-glow>
+                    <div class="card-glow"></div>
+                    <div class="card-inner">
+                        <div class="icon-circle icon-orange">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+                        </div>
+                        <h3>Operator Experience</h3>
+                        <p>Every product starts with a real problem we have seen firsthand. We run the clinics, manage the compliance, and live the workflows our software automates.</p>
+                    </div>
+                </div>
+
+                <!-- Card 5: Patent-Pending Innovation (Full Width, Animated Border) -->
+                <div class="bento-card animated-border full-width">
+                    <div class="animated-border-wrap">
+                        <div class="animated-border-inner">
+                            <div class="icon-circle icon-cyan">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.82 1.508-2.316a7.5 7.5 0 10-7.516 0c.85.496 1.508 1.333 1.508 2.316V18"/></svg>
+                            </div>
+                            <h3>Patent-Pending Innovation</h3>
+                            <p>Our dual-camera, on-device AI analysis technology has a patent filed. It is a real invention, not just an API wrapper. We build vertical AI designed for a specific industry, a specific workflow, and a specific regulatory context.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==============================
+             5. STATS BAR
+             ============================== -->
+        <section class="stats-section">
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">Live Products</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value stat-blue">Patent</div>
+                    <div class="stat-label">Filed</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value stat-cyan">APP</div>
+                    <div class="stat-label">Compliant</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value stat-purple">Sydney</div>
+                    <div class="stat-label">Data Residency</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2025</div>
+                    <div class="stat-label">Founded</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==============================
+             6. OUR PRODUCTS
+             ============================== -->
+        <section class="products-section">
+            <h2 class="section-title">Our Products</h2>
+            <p style="text-align:center; color:rgba(255,255,255,0.5); font-size:18px; margin-top:-48px; margin-bottom:48px;">Four AI platforms, each solving a specific real-world problem.</p>
+            <div class="products-grid">
+                <a href="/products/maeda-health.html" class="product-card" data-glow>
+                    <div class="card-glow"></div>
+                    <div class="card-inner">
+                        <h4>Maeda Health</h4>
+                        <p>AI clinical assistant for Australian doctors. Scribe, billing, forms, referrals.</p>
+                        <span class="product-link">Learn more &rarr;</span>
+                    </div>
+                </a>
+                <a href="/products/vigility.html" class="product-card" data-glow>
+                    <div class="card-glow"></div>
+                    <div class="card-inner">
+                        <h4>Vigility</h4>
+                        <p>Automated compliance for RTOs, NDIS providers, and aged care facilities.</p>
+                        <span class="product-link">Learn more &rarr;</span>
+                    </div>
+                </a>
+                <a href="/products/attune.html" class="product-card" data-glow>
+                    <div class="card-glow"></div>
+                    <div class="card-inner">
+                        <h4>Attune</h4>
+                        <p>AI parenting coach for neurodivergent children. On-device, patent filed.</p>
+                        <span class="product-link">Learn more &rarr;</span>
+                    </div>
+                </a>
+                <a href="/products/petsense.html" class="product-card" data-glow>
+                    <div class="card-glow"></div>
+                    <div class="card-inner">
+                        <h4>Petsense</h4>
+                        <p>Real-time pet behaviour analysis for dogs and cats.</p>
+                        <span class="product-link">Learn more &rarr;</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- ==============================
+             7. CINEMATIC CTA
+             ============================== -->
+        <section class="cta-section">
+            <h2>Partner with us</h2>
+            <p>Interested in our products, partnership opportunities, or press enquiries?</p>
+            <a href="/contact.html" class="btn-glow">
+                <div class="glow-bg"></div>
+                <span>Get in touch</span>
+            </a>
+        </section>
     </main>
 
     <footer class="footer" role="contentinfo">
@@ -115,9 +294,140 @@
         <div class="footer__bottom"><p>&copy; 2026 OneSphere Labs Pty Ltd. All rights reserved.</p></div>
       </div>
     </footer>
+
     <script src="/js/nav.js"></script>
     <script src="/js/animations.js"></script>
     <script src="/js/spotlight.js?v=3"></script>
     <script src="/js/glow.js"></script>
+    <script>
+    (function() {
+        'use strict';
+
+        // ---- 1. HERO LIGHT BEAM CANVAS ----
+        const canvas = document.getElementById('heroCanvas');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let w, h, particles = [], beams = [];
+
+            function resize() {
+                w = canvas.width = canvas.offsetWidth;
+                h = canvas.height = canvas.offsetHeight;
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            // Create particles
+            for (let i = 0; i < 60; i++) {
+                particles.push({
+                    x: Math.random() * 2000,
+                    y: Math.random() * 1200,
+                    r: Math.random() * 1.5 + 0.5,
+                    a: Math.random() * 0.4 + 0.1,
+                    dx: (Math.random() - 0.5) * 0.3,
+                    dy: (Math.random() - 0.5) * 0.3,
+                });
+            }
+
+            // Create soft light beams
+            beams = [
+                { x: w * 0.3, y: h * 0.2, radius: 350, color: 'rgba(59,130,246,0.06)', phase: 0 },
+                { x: w * 0.7, y: h * 0.6, radius: 400, color: 'rgba(34,211,238,0.05)', phase: 2 },
+                { x: w * 0.5, y: h * 0.4, radius: 500, color: 'rgba(255,255,255,0.03)', phase: 4 },
+            ];
+
+            function drawFrame(t) {
+                ctx.clearRect(0, 0, w, h);
+
+                // Draw soft atmospheric glow beams
+                beams.forEach(b => {
+                    const ox = Math.sin(t * 0.0003 + b.phase) * 60;
+                    const oy = Math.cos(t * 0.0002 + b.phase) * 40;
+                    const grad = ctx.createRadialGradient(b.x + ox, b.y + oy, 0, b.x + ox, b.y + oy, b.radius);
+                    grad.addColorStop(0, b.color);
+                    grad.addColorStop(1, 'transparent');
+                    ctx.fillStyle = grad;
+                    ctx.fillRect(0, 0, w, h);
+                });
+
+                // Draw particles
+                particles.forEach(p => {
+                    p.x += p.dx;
+                    p.y += p.dy;
+                    if (p.x < 0) p.x = w;
+                    if (p.x > w) p.x = 0;
+                    if (p.y < 0) p.y = h;
+                    if (p.y > h) p.y = 0;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255,255,255,${p.a})`;
+                    ctx.fill();
+                });
+
+                requestAnimationFrame(drawFrame);
+            }
+            requestAnimationFrame(drawFrame);
+        }
+
+        // ---- 2. SCROLL-LINKED WORD SPOTLIGHT ----
+        const spotlightEl = document.getElementById('spotlightText');
+        if (spotlightEl) {
+            const text = spotlightEl.textContent.trim();
+            const words = text.split(/\s+/);
+            spotlightEl.innerHTML = words.map(w => `<span class="word">${w}</span>`).join(' ');
+
+            const wordSpans = spotlightEl.querySelectorAll('.word');
+
+            function updateSpotlight() {
+                const rect = spotlightEl.getBoundingClientRect();
+                const viewH = window.innerHeight;
+                // Progress: 0 when section enters viewport, 1 when it leaves
+                const start = viewH * 0.8;
+                const end = -rect.height * 0.3;
+                const progress = Math.max(0, Math.min(1, (start - rect.top) / (start - end)));
+                const litCount = Math.floor(progress * wordSpans.length);
+
+                wordSpans.forEach((span, i) => {
+                    span.classList.toggle('lit', i < litCount);
+                });
+            }
+            window.addEventListener('scroll', updateSpotlight, { passive: true });
+            updateSpotlight();
+        }
+
+        // ---- 3. MOUSE-TRACKING GLOW ON CARDS ----
+        document.querySelectorAll('[data-glow]').forEach(card => {
+            const glow = card.querySelector('.card-glow');
+            if (!glow) return;
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                glow.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.08) 0%, transparent 50%)`;
+                glow.style.opacity = '1';
+            });
+            card.addEventListener('mouseleave', () => {
+                glow.style.opacity = '0';
+            });
+        });
+
+        // ---- 4. INTERSECTION OBSERVER FOR FADE-IN ----
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.bento-card, .founder-card, .product-card, .stat-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+    })();
+    </script>
 </body>
 </html>
