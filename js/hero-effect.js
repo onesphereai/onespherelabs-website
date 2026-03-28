@@ -28,31 +28,40 @@
     parts.push({ y: Math.random(), sp: Math.random() * 0.004 + 0.001, sz: Math.random() * 4 + 1.5, br: Math.random() * 0.5 + 0.2, ox: (Math.random() - 0.5) * 50 });
   }
 
-  // 60 vapor clouds — prominent, spread across ENTIRE hero
+  // 70 vapor clouds — forced to cover ALL zones of the hero
   var clouds = [];
   var cloudDefs = [
-    // 8 MASSIVE (600-900px) — huge fog banks covering wide areas
-    {count:8, rMin:600, rMax:900, opMin:0.1, opMax:0.22, spdMul:0.1},
-    // 10 HUGE (350-600px)
-    {count:10, rMin:350, rMax:600, opMin:0.1, opMax:0.2, spdMul:0.18},
-    // 14 large (180-350px)
-    {count:14, rMin:180, rMax:350, opMin:0.1, opMax:0.22, spdMul:0.3},
-    // 14 medium (80-180px) — visible texture clouds
-    {count:14, rMin:80, rMax:180, opMin:0.12, opMax:0.25, spdMul:0.45},
-    // 14 small (30-80px) — fine detail mist
-    {count:14, rMin:30, rMax:80, opMin:0.15, opMax:0.3, spdMul:0.6}
+    {count:8, rMin:600, rMax:900, opMin:0.06, opMax:0.14, spdMul:0.1},
+    {count:12, rMin:300, rMax:600, opMin:0.06, opMax:0.14, spdMul:0.18},
+    {count:16, rMin:150, rMax:300, opMin:0.07, opMax:0.16, spdMul:0.3},
+    {count:16, rMin:60, rMax:150, opMin:0.08, opMax:0.18, spdMul:0.45},
+    {count:18, rMin:20, rMax:60, opMin:0.1, opMax:0.22, spdMul:0.6}
   ];
+  // Force clouds into zones: top-left, top-right, mid-left, mid-right, bottom-left, bottom-right, center
+  var zones = [
+    {xMin:0,xMax:0.3,yMin:0,yMax:0.4},
+    {xMin:0.7,xMax:1,yMin:0,yMax:0.4},
+    {xMin:0,xMax:0.25,yMin:0.3,yMax:0.7},
+    {xMin:0.75,xMax:1,yMin:0.3,yMax:0.7},
+    {xMin:0,xMax:0.35,yMin:0.6,yMax:1},
+    {xMin:0.65,xMax:1,yMin:0.6,yMax:1},
+    {xMin:0.25,xMax:0.75,yMin:0.1,yMax:0.9}
+  ];
+  var zoneIdx = 0;
   cloudDefs.forEach(function(def) {
     for (var n = 0; n < def.count; n++) {
+      var z = zones[zoneIdx % zones.length];
+      zoneIdx++;
       clouds.push({
-        x: Math.random(), y: Math.random(),
+        x: Math.random() * (z.xMax - z.xMin) + z.xMin,
+        y: Math.random() * (z.yMax - z.yMin) + z.yMin,
         r: Math.random() * (def.rMax - def.rMin) + def.rMin,
         dx: (Math.random() - 0.5) * 0.001 * def.spdMul,
         dy: (Math.random() - 0.5) * 0.0008 * def.spdMul,
         op: Math.random() * (def.opMax - def.opMin) + def.opMin,
         ph: Math.random() * 6.28,
-        b: Math.floor(Math.random() * 70 + 100),
-        g: Math.floor(Math.random() * 50 + 40)
+        b: Math.floor(Math.random() * 50 + 80),
+        g: Math.floor(Math.random() * 30 + 25)
       });
     }
   });
@@ -86,10 +95,10 @@
       var cop = cl.op * (0.85 + Math.sin(time * 0.25 + cl.ph) * 0.15);
 
       var cg = ctx.createRadialGradient(cpx, cpy, 0, cpx, cpy, cr);
-      cg.addColorStop(0, 'rgba(' + cl.g + ',' + cl.b + ',220,' + cop + ')');
-      cg.addColorStop(0.25, 'rgba(' + Math.floor(cl.g * 0.8) + ',' + Math.floor(cl.b * 0.85) + ',200,' + (cop * 0.7) + ')');
-      cg.addColorStop(0.5, 'rgba(' + Math.floor(cl.g * 0.5) + ',' + Math.floor(cl.b * 0.6) + ',160,' + (cop * 0.35) + ')');
-      cg.addColorStop(0.75, 'rgba(' + Math.floor(cl.g * 0.3) + ',' + Math.floor(cl.b * 0.35) + ',120,' + (cop * 0.12) + ')');
+      cg.addColorStop(0, 'rgba(' + cl.g + ',' + cl.b + ',180,' + cop + ')');
+      cg.addColorStop(0.2, 'rgba(' + Math.floor(cl.g * 0.7) + ',' + Math.floor(cl.b * 0.75) + ',150,' + (cop * 0.7) + ')');
+      cg.addColorStop(0.45, 'rgba(' + Math.floor(cl.g * 0.4) + ',' + Math.floor(cl.b * 0.5) + ',110,' + (cop * 0.4) + ')');
+      cg.addColorStop(0.7, 'rgba(' + Math.floor(cl.g * 0.2) + ',' + Math.floor(cl.b * 0.25) + ',70,' + (cop * 0.15) + ')');
       cg.addColorStop(1, 'rgba(0,0,0,0)');
       ctx.fillStyle = cg;
       ctx.fillRect(cpx - cr, cpy - cr, cr * 2, cr * 2);
@@ -180,10 +189,10 @@
     // ═══ MASSIVE IMPACT GLOW ═══
     var ip = 1 + Math.sin(time * 1.5) * 0.1;
 
-    var g4 = ctx.createRadialGradient(cx, cy, 0, cx, cy, 500 * ip);
-    g4.addColorStop(0, 'rgba(80,110,200,0.18)');
-    g4.addColorStop(0.3, 'rgba(50,80,160,0.1)');
-    g4.addColorStop(0.6, 'rgba(30,50,120,0.04)');
+    var g4 = ctx.createRadialGradient(cx, cy, 0, cx, cy, 400 * ip);
+    g4.addColorStop(0, 'rgba(60,85,160,0.15)');
+    g4.addColorStop(0.3, 'rgba(40,60,130,0.08)');
+    g4.addColorStop(0.6, 'rgba(20,35,90,0.03)');
     g4.addColorStop(1, 'rgba(0,0,0,0)');
     ctx.fillStyle = g4;
     ctx.beginPath();
