@@ -275,6 +275,111 @@
   border-color: rgba(99, 102, 241, 0.25);
 }
 
+/* ─────────────────────────────────────────────
+   Button Inner Glow DOM element
+   .glow-inner is injected by glow.js inside each
+   .btn-primary / .btn-cta. It is an absolutely
+   positioned div whose left/top track the cursor.
+   .btn-text wraps existing button content so it
+   sits above the glow layer via z-index.
+───────────────────────────────────────────── */
+
+.glow-inner {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle closest-side, rgba(255, 255, 255, 0.8), transparent);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: overlay;
+}
+
+.btn-text {
+  position: relative;
+  z-index: 2;
+}
+
+/* ─────────────────────────────────────────────
+   Animated Rotating Card Border
+   A conic-gradient spins around card edges on
+   hover. Registered @property enables smooth
+   animation of --border-angle across browsers
+   that support @property (Chrome/Edge 85+).
+   Cards without @property support fall back to
+   the existing card-glow box-shadow.
+───────────────────────────────────────────── */
+
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+}
+
+@keyframes rotateBorder {
+  0%   { --border-angle: 0turn; }
+  100% { --border-angle: 1turn; }
+}
+
+/* Target card selectors — none of these have existing ::before/::after */
+.glass-card,
+.feature-card,
+.about-product-card,
+.mission__value {
+  /* Ensure stacking context for ::before/::after inset layers */
+  position: relative;
+}
+
+/* ::before — the rotating conic light beam (border layer) */
+.glass-card::before,
+.feature-card::before,
+.about-product-card::before,
+.mission__value::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: conic-gradient(
+    from var(--border-angle),
+    transparent 0%,
+    rgba(99, 102, 241, 0.9) 8%,
+    rgba(6, 182, 212, 0.7) 15%,
+    transparent 25%,
+    transparent 100%
+  );
+  animation: rotateBorder 3s linear infinite;
+  pointer-events: none;
+}
+
+/* ::after — solid fill that masks the conic gradient center,
+   leaving only a thin glowing border ring visible */
+.glass-card::after,
+.feature-card::after,
+.about-product-card::after,
+.mission__value::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  z-index: -1;
+  background: var(--bg-elevated, #111218);
+  pointer-events: none;
+}
+
+/* Activate the rotating border on hover */
+.glass-card:hover::before,
+.feature-card:hover::before,
+.about-product-card:hover::before,
+.mission__value:hover::before {
+  opacity: 1;
+}
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .glow-blob,
@@ -289,6 +394,20 @@
 
   [data-btn-glow]::before,
   [data-card-glow]::after {
+    display: none;
+  }
+
+  /* Disable rotating border animation */
+  .glass-card::before,
+  .feature-card::before,
+  .about-product-card::before,
+  .mission__value::before {
+    animation: none;
+    opacity: 0 !important;
+  }
+
+  /* Hide injected glow element */
+  .glow-inner {
     display: none;
   }
 }

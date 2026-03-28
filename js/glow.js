@@ -1,20 +1,25 @@
 /**
  * glow.js — OneSphere Labs
  *
- * Two mouse-driven glow effects:
+ * Effect 1: CTA Button Mouse-Following Inner Glow
+ *   Finds all .btn-primary and .btn-cta buttons, injects a .glow-inner div
+ *   and wraps existing content in a .btn-text span for z-index layering.
+ *   The .glow-inner follows the cursor inside the button and fades out
+ *   on mouseleave.
  *
- * 1. CTA Button Inner Glow
- *    Buttons with [data-btn-glow] get a warm radial gradient that follows
- *    the mouse inside the button, creating a light-under-glass effect.
+ * Effect 2: Animated Rotating Card Border
+ *   The CSS handles the conic-gradient animation via @property and
+ *   @keyframes rotateBorder. This script simply ensures cards with
+ *   matching selectors carry the correct stacking context — no extra
+ *   JS is needed beyond what the CSS already provides. The card glow
+ *   (cursor-tracking radial overlay) uses the existing data-card-glow
+ *   attribute + CSS custom property approach.
  *
- * 2. Card Border Light
- *    Cards with [data-card-glow] get a subtle radial gradient overlay
- *    that follows the mouse, illuminating the nearest border region.
- *
- * Both effects are disabled on touch devices and when
- * prefers-reduced-motion is active.
- *
- * IIFE — no global variable pollution.
+ * Guards:
+ *   - prefers-reduced-motion: button glow not initialised.
+ *   - coarse pointer (touch): button glow not initialised.
+ *   - All event listeners are { passive: true }.
+ *   - IIFE — no global variable pollution.
  */
 (function () {
   'use strict';
@@ -22,10 +27,8 @@
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var coarsePointer = window.matchMedia('(pointer: coarse)').matches;
 
-  if (reducedMotion || coarsePointer) return;
-
   /* ─────────────────────────────────────────────
-     1. CTA Button Inner Glow
+     Effect 1: CTA Button Mouse-Following Inner Glow
   ───────────────────────────────────────────── */
 
   function initButtonGlow() {
@@ -33,20 +36,49 @@
     if (!buttons.length) return;
 
     buttons.forEach(function (btn) {
-      btn.setAttribute('data-btn-glow', '');
+      // Skip buttons already processed (guard against double-init)
+      if (btn.querySelector('.glow-inner')) return;
 
+      // Ensure the button has relative positioning and clips overflow
+      btn.style.position = 'relative';
+      btn.style.overflow = 'hidden';
+
+      // Wrap existing button content in .btn-text for z-index layering
+      var existingNodes = Array.prototype.slice.call(btn.childNodes);
+      var textSpan = document.createElement('span');
+      textSpan.className = 'btn-text';
+      existingNodes.forEach(function (node) {
+        textSpan.appendChild(node);
+      });
+      btn.appendChild(textSpan);
+
+      // Create the glow div that follows the cursor
+      var glowEl = document.createElement('div');
+      glowEl.className = 'glow-inner';
+      btn.appendChild(glowEl);
+
+      // Track mouse position within the button
       btn.addEventListener('mousemove', function (e) {
         var rect = btn.getBoundingClientRect();
         var x = e.clientX - rect.left;
         var y = e.clientY - rect.top;
-        btn.style.setProperty('--btn-glow-x', x + 'px');
-        btn.style.setProperty('--btn-glow-y', y + 'px');
+        glowEl.style.left = x + 'px';
+        glowEl.style.top = y + 'px';
+        glowEl.style.opacity = '1';
+      }, { passive: true });
+
+      // Fade out on leave
+      btn.addEventListener('mouseleave', function () {
+        glowEl.style.opacity = '0';
       }, { passive: true });
     });
   }
 
   /* ─────────────────────────────────────────────
-     2. Card Border Light
+     Effect 2: Card Border Light (cursor-tracking overlay)
+     The rotating border is pure CSS (@property + @keyframes).
+     This section preserves the existing cursor-tracking radial
+     overlay via data-card-glow + CSS custom properties.
   ───────────────────────────────────────────── */
 
   function initCardGlow() {
@@ -71,8 +103,14 @@
   /* ─────────────────────────────────────────────
      Bootstrap
   ───────────────────────────────────────────── */
+
   function init() {
-    initButtonGlow();
+    // Button inner glow only on fine-pointer, non-reduced-motion devices
+    if (!reducedMotion && !coarsePointer) {
+      initButtonGlow();
+    }
+
+    // Card cursor glow works on all pointer types (reduced motion guard is in CSS)
     initCardGlow();
   }
 

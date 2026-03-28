@@ -194,10 +194,11 @@
       var x = e.clientX;
       var y = e.clientY;
 
-      // Persist cursor position as CSS custom properties on <html> so the
-      // CSS gradient can reference them via var(--mouse-x) / var(--mouse-y).
-      htmlEl.style.setProperty('--mouse-x', x + 'px');
-      htmlEl.style.setProperty('--mouse-y', y + 'px');
+      // Directly update the overlay's background with a full gradient string.
+      // This avoids CSS custom property resolution issues on the deployed site
+      // where --mouse-x / --mouse-y on <html> may not cascade to the overlay.
+      overlay.style.background =
+        'radial-gradient(600px circle at ' + x + 'px ' + y + 'px, rgba(61, 126, 255, 0.08), transparent 40%)';
 
       // Reveal overlay after first mousemove (it starts hidden via CSS)
       if (!activated) {
