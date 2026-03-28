@@ -127,15 +127,11 @@
     <main id="main">
       <!-- Hero Section -->
       <section class="hero">
-        <!-- Light beam layer -->
-        <div class="hero-light-beam"></div>
-        <!-- Atmospheric haze layer -->
-        <div class="hero-atmosphere"></div>
+        <!-- Canvas effect layer -->
+        <div class="hero-canvas" id="heroCanvas"></div>
         <!-- Glow blobs -->
-        <div class="glow-blob glow-blob--primary" style="top: -200px; left: 25%; opacity: 0.7;"></div>
-        <div class="glow-blob glow-blob--accent" style="top: 50px; right: 0%; opacity: 0.6;"></div>
-        <div class="glow-blob glow-blob--warm" style="bottom: -150px; left: 45%; opacity: 0.5;"></div>
-        <div class="glow-blob glow-blob--subtle" style="top: 30%; left: 55%; opacity: 0.4;"></div>
+        <div class="glow-blob glow-blob--primary" style="top: -200px; left: 25%; opacity: 0.5;"></div>
+        <div class="glow-blob glow-blob--accent" style="top: 50px; right: 0%; opacity: 0.4;"></div>
         <!-- Content layer — above all effects -->
         <div class="hero__container">
           <div class="hero__content animate-on-scroll">
@@ -168,8 +164,6 @@
             </div>
           </div>
         </div>
-        <!-- Sphere — beam impact point -->
-        <div class="hero-sphere"></div>
         <!-- Bottom fade -->
         <div class="hero-bottom-fade"></div>
       </section>
@@ -309,5 +303,6 @@
 
     <script src="/js/nav.js"></script>
     <script src="/js/animations.js"></script>
+    <script src="/js/hero-effect.js"></script>
 </body>
 </html>
