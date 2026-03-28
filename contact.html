@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact — OneSphere Labs</title>
-    <meta name="description" content="Get in touch with OneSphere Labs. Enquire about our AI products or partnership opportunities.">
+    <meta name="description" content="Get in touch with OneSphere Labs. Enquire about Maeda Health, Vigility, Attune, Petsense, or partnership opportunities.">
     <link rel="icon" type="image/png" href="/logo.png">
+    <link rel="canonical" href="https://onespherelabs.com.au/contact.html">
     <link rel="stylesheet" href="/css/tokens.css">
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/nav.css">
     <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/contact.css">
     <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <a href="#main" class="sr-only">Skip to main content</a>
-    <!-- Nav injected by nav partial -->
     <nav class="nav" role="navigation" aria-label="Main navigation">
       <div class="nav__container">
         <a href="/" class="nav__logo" aria-label="OneSphere Labs home"><img src="/logo.png" alt="OneSphere Labs" width="40" height="40"><span class="nav__logo-text">OneSphere Labs</span></a>
@@ -35,44 +36,154 @@
       </div>
       <div class="nav__overlay" data-open="false"></div>
     </nav>
-    <main id="main" style="padding-top: 100px; text-align: center;">
-        <h1>Contact Us</h1>
-        <p style="margin: 1rem auto;">Contact page — coming in Sprint 6 (WEB-26)</p>
+
+    <main id="main">
+      <section class="contact-hero">
+        <div class="contact-hero__container animate-on-scroll">
+          <h1 class="contact-hero__title">Get in touch</h1>
+          <p class="contact-hero__description">Interested in our products, partnership opportunities, or press enquiries? We'd love to hear from you.</p>
+        </div>
+      </section>
+
+      <section class="contact-form-section">
+        <div class="contact-form__container">
+          <!-- Success State -->
+          <div class="form-success" id="formSuccess">
+            <div class="form-success__icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+            </div>
+            <h3>Message sent</h3>
+            <p>Thank you for reaching out. We'll get back to you within 1-2 business days.</p>
+            <a href="/" class="btn btn-secondary">Back to homepage</a>
+          </div>
+
+          <!-- Contact Form -->
+          <form class="contact-form" id="contactForm" action="https://formsubmit.co/contact@onespherelabs.com.au" method="POST">
+            <input type="hidden" name="_subject" value="New inquiry from OneSphere Labs website">
+            <input type="hidden" name="_next" value="https://onespherelabs.com.au/contact.html?submitted=true">
+            <input type="text" name="_honeypot" style="display:none" tabindex="-1" autocomplete="off">
+
+            <div class="form-group" id="nameGroup">
+              <label for="name">Name <span class="required">*</span></label>
+              <input type="text" id="name" name="name" required autocomplete="name">
+              <p class="form-error" id="nameError" role="alert">Please enter your name.</p>
+            </div>
+
+            <div class="form-group" id="emailGroup">
+              <label for="email">Email <span class="required">*</span></label>
+              <input type="email" id="email" name="email" required autocomplete="email">
+              <p class="form-error" id="emailError" role="alert">Please enter a valid email address.</p>
+            </div>
+
+            <div class="form-group" id="productGroup">
+              <label for="product">Product Interest <span class="required">*</span></label>
+              <select id="product" name="product" required>
+                <option value="" disabled selected>Select a product or topic</option>
+                <option value="Maeda Health">Maeda Health</option>
+                <option value="Vigility">Vigility</option>
+                <option value="Attune">Attune</option>
+                <option value="Petsense">Petsense</option>
+                <option value="General Inquiry">General Inquiry</option>
+                <option value="Partnership / Press">Partnership / Press</option>
+              </select>
+              <p class="form-error" id="productError" role="alert">Please select a product or topic.</p>
+            </div>
+
+            <div class="form-group" id="messageGroup">
+              <label for="message">Message <span class="required">*</span></label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+              <p class="form-error" id="messageError" role="alert">Please enter your message.</p>
+            </div>
+
+            <button type="submit" class="btn btn-primary form-submit" id="submitBtn">Send message</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="contact-info">
+        <div class="contact-info__container animate-on-scroll">
+          <p>You can also reach us directly at <a href="mailto:contact@onespherelabs.com.au">contact@onespherelabs.com.au</a></p>
+        </div>
+      </section>
     </main>
+
     <footer class="footer" role="contentinfo">
       <div class="footer__container">
         <div class="footer__grid">
-          <div class="footer__brand">
-            <span class="footer__brand-name">OneSphere Labs</span>
-            <p class="footer__tagline">Australian AI Product Studio</p>
+          <div class="footer__brand"><span class="footer__brand-name">OneSphere Labs</span><p class="footer__tagline">Australian AI Product Studio</p>
             <div class="footer__social">
               <a href="https://linkedin.com/company/onespherelabs" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
               <a href="https://x.com/onespherelabs" aria-label="X (Twitter)" target="_blank" rel="noopener"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg></a>
             </div>
           </div>
-          <div class="footer__column">
-            <h3 class="footer__heading">Products</h3>
-            <ul class="footer__links">
-              <li><a href="/products/maeda-health.html">Maeda Health</a></li>
-              <li><a href="/products/vigility.html">Vigility</a></li>
-              <li><a href="/products/attune.html">Attune</a></li>
-              <li><a href="/products/petsense.html">Petsense</a></li>
-            </ul>
-          </div>
-          <div class="footer__column">
-            <h3 class="footer__heading">Company</h3>
-            <ul class="footer__links">
-              <li><a href="/about.html">About</a></li>
-              <li><a href="/contact.html">Contact</a></li>
-            </ul>
-          </div>
+          <div class="footer__column"><h3 class="footer__heading">Products</h3><ul class="footer__links"><li><a href="/products/maeda-health.html">Maeda Health</a></li><li><a href="/products/vigility.html">Vigility</a></li><li><a href="/products/attune.html">Attune</a></li><li><a href="/products/petsense.html">Petsense</a></li></ul></div>
+          <div class="footer__column"><h3 class="footer__heading">Company</h3><ul class="footer__links"><li><a href="/about.html">About</a></li><li><a href="/contact.html">Contact</a></li></ul></div>
         </div>
-        <div class="footer__bottom">
-          <p>&copy; 2026 OneSphere Labs Pty Ltd. All rights reserved.</p>
-        </div>
+        <div class="footer__bottom"><p>&copy; 2026 OneSphere Labs Pty Ltd. All rights reserved.</p></div>
       </div>
     </footer>
+
     <script src="/js/nav.js"></script>
     <script src="/js/animations.js"></script>
+    <script>
+    (function() {
+      var form = document.getElementById('contactForm');
+      var success = document.getElementById('formSuccess');
+      var submitBtn = document.getElementById('submitBtn');
+
+      // Check for submitted param
+      if (window.location.search.indexOf('submitted=true') !== -1) {
+        form.style.display = 'none';
+        success.classList.add('visible');
+        return;
+      }
+
+      // Blur validation
+      var fields = [
+        { id: 'name', group: 'nameGroup', error: 'nameError', validate: function(v) { return v.trim().length > 0; } },
+        { id: 'email', group: 'emailGroup', error: 'emailError', validate: function(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); } },
+        { id: 'product', group: 'productGroup', error: 'productError', validate: function(v) { return v.length > 0; } },
+        { id: 'message', group: 'messageGroup', error: 'messageError', validate: function(v) { return v.trim().length > 0; } }
+      ];
+
+      fields.forEach(function(f) {
+        var el = document.getElementById(f.id);
+        if (el) {
+          el.addEventListener('blur', function() {
+            var group = document.getElementById(f.group);
+            if (!f.validate(el.value)) {
+              group.classList.add('form-group--error');
+            } else {
+              group.classList.remove('form-group--error');
+            }
+          });
+        }
+      });
+
+      // Submit validation
+      form.addEventListener('submit', function(e) {
+        var firstInvalid = null;
+        fields.forEach(function(f) {
+          var el = document.getElementById(f.id);
+          var group = document.getElementById(f.group);
+          if (!f.validate(el.value)) {
+            group.classList.add('form-group--error');
+            if (!firstInvalid) firstInvalid = el;
+          } else {
+            group.classList.remove('form-group--error');
+          }
+        });
+
+        if (firstInvalid) {
+          e.preventDefault();
+          firstInvalid.focus();
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending...';
+      });
+    })();
+    </script>
 </body>
 </html>
