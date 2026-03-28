@@ -70,31 +70,10 @@
   z-index: 5;
   pointer-events: none;
   opacity: 0;
-  /* Smooth transition when entering/leaving the hero zone */
   transition: opacity 400ms var(--ease-out);
-
-  /*
-   * The radial gradient is recomputed by the browser on every repaint
-   * whenever --mouse-x or --mouse-y changes. No JS paint involved.
-   *
-   * Gradient anatomy:
-   *   centre (0%)  — brightest white-blue highlight
-   *   mid    (30%) — faint indigo tint matching --primary
-   *   edge   (70%) — fully transparent
-   *
-   * Radius is expressed in viewport units (35vw) so the spotlight
-   * scales proportionally on all screen sizes.
-   */
-  background: radial-gradient(
-    circle 35vw at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(255, 255, 255, 0.04)   0%,
-    rgba(99, 102, 241, 0.06)    20%,
-    rgba(99, 102, 241, 0.03)    40%,
-    transparent                 70%
-  );
-
   mix-blend-mode: screen;
-  will-change: background;
+  /* No static background — JS sets overlay.style.background directly
+     on every mousemove for reliable cross-browser repaint. */
 }
 
 /**

@@ -194,25 +194,26 @@
       var x = e.clientX;
       var y = e.clientY;
 
-      // Directly update the overlay's background with a full gradient string.
-      // This avoids CSS custom property resolution issues on the deployed site
-      // where --mouse-x / --mouse-y on <html> may not cascade to the overlay.
-      overlay.style.background =
-        'radial-gradient(600px circle at ' + x + 'px ' + y + 'px, rgba(61, 126, 255, 0.08), transparent 40%)';
-
-      // Reveal overlay after first mousemove (it starts hidden via CSS)
       if (!activated) {
         activated = true;
-        overlay.classList.add('is-active');
       }
 
       // On homepage: hide overlay while cursor is inside the hero zone so the
       // canvas hero effect is not washed out by the page-level spotlight.
       if (isCursorInHeroZone(x, y)) {
-        overlay.classList.remove('is-active');
-      } else if (activated) {
-        overlay.classList.add('is-active');
+        overlay.style.opacity = '0';
+        return;
       }
+
+      // Directly set background with full gradient string for reliable
+      // cross-browser repaint (avoids CSS custom property resolution issues).
+      overlay.style.opacity = '1';
+      overlay.style.background =
+        'radial-gradient(circle 35vw at ' + x + 'px ' + y + 'px, ' +
+        'rgba(255,255,255,0.04) 0%, ' +
+        'rgba(99,102,241,0.06) 20%, ' +
+        'rgba(99,102,241,0.03) 40%, ' +
+        'transparent 70%)';
     }, { passive: true });
   }
 
