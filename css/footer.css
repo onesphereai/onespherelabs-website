@@ -1,6 +1,6 @@
 /* Footer */
 .footer {
-  background-color: var(--text-primary);
+  background-color: var(--footer-bg);
   color: var(--text-inverse);
   padding: var(--space-16) 0 var(--space-8);
 }

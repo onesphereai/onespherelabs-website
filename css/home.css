@@ -153,23 +153,23 @@
 }
 
 .product-card__icon--health {
-  background-color: #ECFEFF;
-  color: #0891B2;
+  background-color: rgba(8, 145, 178, 0.15);
+  color: #22D3EE;
 }
 
 .product-card__icon--compliance {
-  background-color: #F0FDF4;
-  color: #059669;
+  background-color: rgba(5, 150, 105, 0.15);
+  color: #34D399;
 }
 
 .product-card__icon--family {
-  background-color: #FAF5FF;
-  color: #7C3AED;
+  background-color: rgba(124, 58, 237, 0.15);
+  color: #A78BFA;
 }
 
 .product-card__icon--pet {
-  background-color: #FFF7ED;
-  color: #EA580C;
+  background-color: rgba(234, 88, 12, 0.15);
+  color: #FB923C;
 }
 
 .product-card__audience {
