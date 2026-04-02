@@ -1,0 +1,413 @@
+/* =========================================
+   Cinematic Effects — Glows, Glass, Beams
+   ========================================= */
+
+/* Glow blobs — ambient light effect */
+.glow-blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  filter: blur(80px);
+}
+
+.glow-blob--primary {
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(61, 126, 255, 0.5) 0%, rgba(61, 126, 255, 0.2) 40%, transparent 70%);
+}
+
+.glow-blob--accent {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(6, 182, 212, 0.4) 0%, rgba(6, 182, 212, 0.15) 40%, transparent 70%);
+}
+
+.glow-blob--warm {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(251, 146, 60, 0.3) 0%, rgba(251, 146, 60, 0.1) 40%, transparent 70%);
+}
+
+.glow-blob--subtle {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.25) 0%, transparent 70%);
+}
+
+/* Canvas-based hero effect */
+.hero-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-canvas canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Bottom fade over canvas — seamless transition to next section */
+.hero-bottom-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 300px;
+  background: linear-gradient(to bottom, transparent 0%, rgba(5,5,6,0.3) 40%, rgba(5,5,6,0.7) 70%, var(--bg) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Floating vapor/mist orbs */
+@keyframes floatUp {
+  0% { transform: translateY(0) translateX(0) scale(0.8); opacity: 0; }
+  15% { opacity: 0.8; }
+  85% { opacity: 0.6; }
+  100% { transform: translateY(-80vh) translateX(30px) scale(1.2); opacity: 0; }
+}
+
+@keyframes floatUpSlow {
+  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  20% { opacity: 0.5; }
+  80% { opacity: 0.3; }
+  100% { transform: translateY(-60vh) translateX(-20px) scale(1.5); opacity: 0; }
+}
+
+/* Glass card */
+.glass-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--card-radius-lg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition:
+    border-color var(--duration-normal) var(--ease-out),
+    box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.glass-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 0 30px rgba(99, 102, 241, 0.1);
+}
+
+/* CTA button glow */
+.btn-glow {
+  box-shadow: 0 0 15px var(--glow-accent), 0 0 45px rgba(6, 182, 212, 0.15);
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 25px var(--glow-accent), 0 0 60px rgba(6, 182, 212, 0.25);
+}
+
+/* Gradient text — extended variants */
+.gradient-text--cool {
+  background: linear-gradient(135deg, #818CF8, #06B6D4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text--warm {
+  background: linear-gradient(135deg, #F472B6, #FB923C);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Bento grid */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--grid-gap);
+}
+
+.bento-grid__item--wide { grid-column: span 7; }
+.bento-grid__item--narrow { grid-column: span 5; }
+.bento-grid__item--half { grid-column: span 6; }
+.bento-grid__item--full { grid-column: span 12; }
+.bento-grid__item--third { grid-column: span 4; }
+
+/* Section glow — radial gradient behind content */
+.section-glow {
+  position: relative;
+}
+
+.section-glow::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  height: 500px;
+  background: radial-gradient(ellipse, rgba(61, 126, 255, 0.3) 0%, rgba(99, 102, 241, 0.15) 40%, transparent 70%);
+  filter: blur(80px);
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.section-glow > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Border glow on cards */
+.card-glow {
+  transition: box-shadow var(--duration-normal) var(--ease-out);
+}
+
+.card-glow:hover {
+  box-shadow:
+    0 0 20px var(--glow-primary),
+    0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive — reduce effects on mobile */
+@media (max-width: 768px) {
+  .glow-blob {
+    filter: blur(40px);
+    opacity: 0.5;
+  }
+
+  .glow-blob--primary { width: 300px; height: 300px; }
+  .glow-blob--accent { width: 200px; height: 200px; }
+  .glow-blob--subtle { display: none; }
+
+  .section-glow::before {
+    width: 300px;
+    height: 200px;
+    filter: blur(60px);
+    opacity: 0.2;
+  }
+
+  .bento-grid__item--wide,
+  .bento-grid__item--narrow,
+  .bento-grid__item--half,
+  .bento-grid__item--third {
+    grid-column: span 12;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   CTA Button Inner Glow
+   A warm radial gradient follows the cursor inside
+   the button, creating a light-under-glass effect.
+   JS sets --btn-glow-x / --btn-glow-y on mousemove.
+───────────────────────────────────────────── */
+
+.btn-primary[data-btn-glow],
+.btn-cta[data-btn-glow] {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-primary[data-btn-glow]::before,
+.btn-cta[data-btn-glow]::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+  background: radial-gradient(
+    120px circle at var(--btn-glow-x, 50%) var(--btn-glow-y, 50%),
+    rgba(255, 255, 245, 0.35) 0%,
+    rgba(255, 255, 245, 0.12) 25%,
+    transparent 65%
+  );
+}
+
+.btn-primary[data-btn-glow]:hover::before,
+.btn-cta[data-btn-glow]:hover::before {
+  opacity: 1;
+}
+
+/* CTA (cyan) gets a cooler tinted glow */
+.btn-cta[data-btn-glow]::before {
+  background: radial-gradient(
+    120px circle at var(--btn-glow-x, 50%) var(--btn-glow-y, 50%),
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(6, 182, 212, 0.2) 30%,
+    transparent 65%
+  );
+}
+
+/* ─────────────────────────────────────────────
+   Card Border Light
+   A soft radial gradient overlay follows the cursor
+   on cards, illuminating the nearest border region.
+   JS sets --card-glow-x / --card-glow-y on mousemove.
+───────────────────────────────────────────── */
+
+[data-card-glow] {
+  position: relative;
+}
+
+[data-card-glow]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--ease-out);
+  background: radial-gradient(
+    350px circle at var(--card-glow-x, 50%) var(--card-glow-y, 50%),
+    rgba(99, 102, 241, 0.12) 0%,
+    rgba(99, 102, 241, 0.04) 40%,
+    transparent 65%
+  );
+}
+
+[data-card-glow]:hover::after {
+  opacity: 1;
+}
+
+/* Border brightens toward cursor — highlight via box-shadow */
+[data-card-glow]:hover {
+  border-color: rgba(99, 102, 241, 0.25);
+}
+
+/* ─────────────────────────────────────────────
+   Button Inner Glow DOM element
+   .glow-inner is injected by glow.js inside each
+   .btn-primary / .btn-cta. It is an absolutely
+   positioned div whose left/top track the cursor.
+   .btn-text wraps existing button content so it
+   sits above the glow layer via z-index.
+───────────────────────────────────────────── */
+
+.glow-inner {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: radial-gradient(circle closest-side, rgba(255, 255, 255, 0.8), transparent);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: overlay;
+}
+
+.btn-text {
+  position: relative;
+  z-index: 2;
+}
+
+/* ─────────────────────────────────────────────
+   Animated Rotating Card Border
+   A conic-gradient spins around card edges on
+   hover. Registered @property enables smooth
+   animation of --border-angle across browsers
+   that support @property (Chrome/Edge 85+).
+   Cards without @property support fall back to
+   the existing card-glow box-shadow.
+───────────────────────────────────────────── */
+
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+}
+
+@keyframes rotateBorder {
+  0%   { --border-angle: 0turn; }
+  100% { --border-angle: 1turn; }
+}
+
+/* Target card selectors — none of these have existing ::before/::after */
+.glass-card,
+.feature-card,
+.about-product-card,
+.mission__value {
+  /* Ensure stacking context for ::before/::after inset layers */
+  position: relative;
+}
+
+/* ::before — the rotating conic light beam (border layer) */
+.glass-card::before,
+.feature-card::before,
+.about-product-card::before,
+.mission__value::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: conic-gradient(
+    from var(--border-angle),
+    transparent 0%,
+    rgba(99, 102, 241, 0.9) 8%,
+    rgba(6, 182, 212, 0.7) 15%,
+    transparent 25%,
+    transparent 100%
+  );
+  animation: rotateBorder 3s linear infinite;
+  pointer-events: none;
+}
+
+/* ::after — solid fill that masks the conic gradient center,
+   leaving only a thin glowing border ring visible */
+.glass-card::after,
+.feature-card::after,
+.about-product-card::after,
+.mission__value::after {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  z-index: -1;
+  background: var(--bg-elevated, #111218);
+  pointer-events: none;
+}
+
+/* Activate the rotating border on hover */
+.glass-card:hover::before,
+.feature-card:hover::before,
+.about-product-card:hover::before,
+.mission__value:hover::before {
+  opacity: 1;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .glow-blob,
+  .section-glow::before {
+    animation: none;
+  }
+
+  .glass-card,
+  .card-glow {
+    transition: none;
+  }
+
+  [data-btn-glow]::before,
+  [data-card-glow]::after {
+    display: none;
+  }
+
+  /* Disable rotating border animation */
+  .glass-card::before,
+  .feature-card::before,
+  .about-product-card::before,
+  .mission__value::before {
+    animation: none;
+    opacity: 0 !important;
+  }
+
+  /* Hide injected glow element */
+  .glow-inner {
+    display: none;
+  }
+}
